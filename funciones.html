@@ -12,21 +12,26 @@
 </head>
 
 <body>
+  <div>
+  <header class="header">
+    <nav class="navbar">
+      <div class="">
+          <img id="logo" src="./img/logo1.png" alt="Logo de mi página">
+      </div>
+      <ul class="nav-links">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="funciones.html">Funciones</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+  </nav>
+</div>
+<div>
+ 
 <div id="app">
-    <header class="header">
-      <nav class="navbar">
-        <div class="container">
-          <div class="navbar">
-            <img id="logo" src="./img/logo1.png" alt="Logo de mi página">
-          </div>
-          <ul class="nav-links">
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="funciones.html">Funciones</a></li>
-            <li><a href="contacto.html">Contacto</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+<br> 
+<br>
+<br>
+<br>
     <section class="gallery">
         <div class="boda">
             <div class="containera">
@@ -44,27 +49,9 @@
         </div>
     </section>
 </div>
-    <!-- <section class="gallery">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4" v-for="functionInfo in functions" :key="functionInfo.id">
-              <div class="card">
-                <img :src="functionInfo.download_url" :alt="functionInfo.author" class="card-img-top" @click="showFunctionDetails(functionInfo)" />
-                <div class="card-body">
-                  <h5 class="card-title">{{ functionInfo.author }}</h5>
-                  <p class="card-text">{{ functionInfo.description }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section> -->
+</div>
 
-
-
-  
-
-
+<div>
 <footer class="footer">
     <p>&copy; 2023 La Sala Teatro</p>
     <div>
@@ -74,6 +61,7 @@
     </div>
 
 </footer>
+</div>
     <script src="./js/funciones.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

@@ -1,0 +1,21 @@
+cards
+
+    <!-- <section class="gallery">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4" v-for="functionInfo in functions" :key="functionInfo.id">
+              <div class="card">
+                <img :src="functionInfo.download_url" :alt="functionInfo.author" class="card-img-top" @click="showFunctionDetails(functionInfo)" />
+                <div class="card-body">
+                  <h5 class="card-title">{{ functionInfo.author }}</h5>
+                  <p class="card-text">{{ functionInfo.description }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> -->
+
+
+--------------------------------------------------------
+
