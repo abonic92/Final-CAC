@@ -641,40 +641,76 @@ span {
 .carda:hover img {
     transform: scale(1.1) rotate(-3deg);
 }
-
-/* Media Query for responsiveness */
 @media (max-width: 768px) {
-    .carda {
-        height: auto; /* Adjust height as needed for smaller screens */
-    }
-}
-
-@media (max-width: 768px) {
-  .gallery {
-    flex-direction: column;
-    /* Cambia a una sola columna en pantallas más pequeñas */
+  .carda {
+    box-shadow: none; /* Elimina la sombra en pantallas más pequeñas */
   }
 
-  .gallery img {
-    width: 100%;
-    /* Ocupa todo el ancho en la vista móvil */
-    margin: 10px 0;
-    /* Espacio entre las imágenes en la vista móvil */
+  .carda img {
+    height: 500px;
+    width: 400px;
+    transform: none; /* Elimina la transformación en pantallas más pequeñas */
+    transition: none; /* Elimina la transición en pantallas más pequeñas */
+  }
+
+  .carda .intro {
     height: auto;
-    /* Restaura la altura automática para evitar el estiramiento en la vista móvil */
+    bottom: 0;
+    background: rgba(27, 27, 27, 0.5);
+    color: rgb(250, 250, 250); /* Color de texto en pantallas más pequeñas */
   }
 
-  /* Contact section */
-  .contact {
-    text-align: center;
-    padding: 60px 0;
+  .carda:hover .intro {
+    height: auto;
+    background: none;
   }
 
-  /* Pie de página */
-  .footer {
-    background-color: #333;
-    color: #f0f0f0;
-    text-align: center;
-    padding: 10px 0;
+  .carda:hover p {
+    opacity: 1;
+    visibility: visible;
   }
+
+  .intro {
+    height: 70px;
+    max-width: 350px; /* Set maximum width to 100% */
+    box-sizing: border-box;
+    padding: 6px;
+    position: relative;
+    background: rgba(27, 27, 27, 0.5);
+    color: white;
+    transition: 0.5s;
+    bottom: 240px; /* Use percentage for bottom */
 }
+
+.carda:hover .intro {
+    height: 220px;
+    bottom: 240px;
+    background: black;
+}
+
+.carda:hover p {
+    opacity: 1;
+    visibility: visible;
+}
+.carda:hover img {
+  transform: none;
+}
+}
+
+/* Ajustes para pantallas más pequeñas */
+@media (max-width: 768px) {
+  .carda {
+    height: auto;
+    margin: 10px;
+  }
+
+  .intro {
+    height: auto;
+    max-width: 100%;
+    bottom: 0;
+  }
+
+  
+}
+
+
