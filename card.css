@@ -1,5 +1,5 @@
 /* Estilos generales */
-body {
+main {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -340,13 +340,14 @@ body {
     color: #f0f0f0;
   }
   
+
   footer {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 10px 30px;
-    background: linear-gradient(#666 25%, #444 50%, #222 100%);
+    background: linear-gradient(#000000 25%, #140606 50%, #1b0101 100%);
   }
   
   footer p {
@@ -580,13 +581,7 @@ img {
     display: flex;
 }
 
-.boda {
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    align-items: center;
-    background: rgba(245, 245, 245, 0.068);
-}
+
 
 .carda {
     height: 350px;
