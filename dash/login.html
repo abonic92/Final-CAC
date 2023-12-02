@@ -97,6 +97,14 @@
                     password: ''
                 };
             },
+            mounted() {
+                // Verifica si hay un token de acceso almacenado
+                const token = localStorage.getItem("access_token");
+                if (token) {
+                    // Si hay un token, redirige a la página de inicio
+                    window.location.href = "/index.html";
+                }
+            },
             methods: {
                 login() {
                     // Realizar llamada a la API utilizando fetch
