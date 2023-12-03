@@ -3,17 +3,70 @@ export default {
     data() {
         return {
             funciones: [],
-            funcionAEditar: { titulo: '', fecha: '', hora: '', imagen: '', grupo_id: 0, productor_id: 0 },
+            funcionAEditar: { titulo: '', fecha: '', hora: '', imagen: '', grupo_id: 0, productor_id: 0, grupo_nombre: '', productor_nombre: '', },
             nuevaFuncion: { titulo: '', fecha: '', hora: '', imagen: '', grupo_id: 0, productor_id: 0 },
+
         };
     },
     mounted() {
         this.cargarFunciones();
+        this.cargarGrupos();  
+        this.cargarProductores();  
     },
     methods: {
         abrirModalAgregar() {
             this.nuevaFuncion = { titulo: '', fecha: '', hora: '', imagen: '', grupo_id: 0, productor_id: 0 };
             $('#agregarFuncionModal').modal('show');
+        },
+        async cargarProductores() {
+            try {
+                const token = localStorage.getItem("access_token");
+        
+                const headers = new Headers();
+                headers.append("Authorization", `Bearer ${token}`);
+        
+                const requestOptions = {
+                    method: "GET",
+                    headers: headers,
+                    redirect: "follow",
+                };
+        
+                const response = await fetch("https://gcandia1992.pythonanywhere.com/productores", requestOptions);
+        
+                if (!response.ok) {
+                    throw new Error(`Error al cargar datos de productores. Código: ${response.status}`);
+                }
+        
+                const data = await response.json();
+                this.productores = data.productores;
+            } catch (error) {
+                console.error("Error al cargar datos de productores:", error);
+            }
+        },
+        async cargarGrupos() {
+            try {
+                const token = localStorage.getItem("access_token");
+        
+                const headers = new Headers();
+                headers.append("Authorization", `Bearer ${token}`);
+        
+                const requestOptions = {
+                    method: "GET",
+                    headers: headers,
+                    redirect: "follow",
+                };
+        
+                const response = await fetch("https://gcandia1992.pythonanywhere.com/grupos", requestOptions);
+        
+                if (!response.ok) {
+                    throw new Error(`Error al cargar datos de grupos. Código: ${response.status}`);
+                }
+        
+                const data = await response.json();
+                this.grupos = data.grupos;
+            } catch (error) {
+                console.error("Error al cargar datos de grupos:", error);
+            }
         },
         async agregarFuncion() {
             try {
@@ -72,34 +125,43 @@ export default {
             try {
                 const idFuncion = funcion.id;
                 const token = localStorage.getItem('access_token');
-
+        
                 if (!token) {
                     console.error('Token de acceso no encontrado');
                     return;
                 }
-
+        
+                // Crear un nuevo objeto solo con los campos necesarios
+                const funcionEditada = {
+                    titulo: funcion.titulo,
+                    fecha: funcion.fecha,
+                    hora: funcion.hora,
+                    imagen: funcion.imagen,
+                    grupo_id: funcion.grupo.id, // Cambiar a grupo.id
+                    productor_id: funcion.productor.id, // Cambiar a productor.id
+                };
+        
                 const headers = new Headers({
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 });
-
+        
                 const requestOptions = {
                     method: 'PUT',
                     headers: headers,
-                    body: JSON.stringify(funcion),
+                    body: JSON.stringify(funcionEditada),
                     redirect: 'follow',
                 };
-
+        
                 const api = `https://gcandia1992.pythonanywhere.com/dashboard/funciones/${idFuncion}`;
                 const response = await fetch(api, requestOptions);
-
+        
                 if (!response.ok) {
                     throw new Error(`Error al editar la función. Código: ${response.status}`);
                 }
-
+        
                 console.log('Función editada exitosamente');
                 this.cargarFunciones();
-
             } catch (error) {
                 console.error('Error al editar la función:', error);
             }
@@ -130,16 +192,18 @@ export default {
             }
         },
         
-        // Otros métodos para CRUD de funciones
-        // ...
-
+        
         guardarCambios() {
             const funcion = this.funcionAEditar;
             this.editarFuncion(funcion);
             $('#editarFuncionModal').modal('hide');
         },
         editarFuncionAbrirModal(funcion) {
-            this.funcionAEditar = { ...funcion };
+            this.funcionAEditar = {
+                ...funcion,
+                grupo_nombre: funcion.grupo.nombre,
+                productor_nombre: funcion.productor.nombre,
+            };
             $('#editarFuncionModal').modal('show');
         },
         eliminarFuncionAbrirModal(funcion) {
@@ -168,6 +232,8 @@ export default {
                                     <th>Título</th>
                                     <th>Fecha</th>
                                     <th>Hora</th>
+                                    <th>Grupo</th>
+                                    <th>Productor</th>
                                     <th>Editar</th>
                                     <th>Eliminar</th>
                                 </tr>
@@ -179,6 +245,8 @@ export default {
                                     <td>{{ funcion.titulo }}</td>
                                     <td>{{ funcion.fecha }}</td>
                                     <td>{{ funcion.hora }}</td>
+                                    <td>{{ funcion.grupo.nombre }}</td> <!-- Nueva columna para el nombre del grupo -->
+                                    <td>{{ funcion.productor.nombre }}</td> <!-- Nueva columna para el nombre del productor -->
                                     <td>
                                         <a @click="editarFuncionAbrirModal(funcion)" class="btn-sm btn-primary" href="#" role="button">
                                             <i class="fas fa-fw fa-edit"></i>
@@ -191,6 +259,7 @@ export default {
                                     </td>
                                 </tr>
                             </tbody>
+
                         </table>
                     </div>
                 </div>
@@ -209,18 +278,30 @@ export default {
                     </div>
                     <div class="modal-body">
                         <!-- Contenido del formulario de edición -->
-                        <label for="titulo">Título:</label>
-                        <input v-model="funcionAEditar.titulo" type="text" required />
-                        <label for="fecha">Fecha:</label>
-                        <input v-model="funcionAEditar.fecha" type="date" required />
-                        <label for="hora">Hora:</label>
-                        <input v-model="funcionAEditar.hora" type="time" required />
-                        <label for="imagen">Imagen URL:</label>
-                        <input v-model="funcionAEditar.imagen" type="text" />
-                        <label for="grupo_id">ID del Grupo:</label>
-                        <input v-model="funcionAEditar.grupo_id" type="number" required />
-                        <label for="productor_id">ID del Productor:</label>
-                        <input v-model="funcionAEditar.productor_id" type="number" required />
+                        <div class="form-group">
+                            <label for="titulo">Título:</label>
+                            <input v-model="funcionAEditar.titulo" type="text" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha">Fecha:</label>
+                            <input v-model="funcionAEditar.fecha" type="date" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="hora">Hora:</label>
+                            <input v-model="funcionAEditar.hora" type="time" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="imagen">Imagen URL:</label>
+                            <input v-model="funcionAEditar.imagen" type="text" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="grupo_id">Grupo:</label>
+                            <input v-model="funcionAEditar.grupo_nombre" type="text" class="form-control" disabled />
+                        </div>
+                        <div class="form-group">
+                            <label for="productor_id">Productor:</label>
+                            <input v-model="funcionAEditar.productor_nombre" type="text" class="form-control" disabled />
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -229,6 +310,7 @@ export default {
                 </div>
             </div>
         </div>
+
 
         <!-- Modal de agregar -->
         <div class="modal" id="agregarFuncionModal" tabindex="-1" role="dialog">
@@ -242,18 +324,36 @@ export default {
                     </div>
                     <div class="modal-body">
                         <!-- Contenido del formulario de agregar -->
-                        <label for="titulo">Título:</label>
-                        <input v-model="nuevaFuncion.titulo" type="text" required />
-                        <label for="fecha">Fecha:</label>
-                        <input v-model="nuevaFuncion.fecha" type="date" required />
-                        <label for="hora">Hora:</label>
-                        <input v-model="nuevaFuncion.hora" type="time" required />
-                        <label for="imagen">Imagen URL:</label>
-                        <input v-model="nuevaFuncion.imagen" type="text" />
-                        <label for="grupo_id">ID del Grupo:</label>
-                        <input v-model="nuevaFuncion.grupo_id" type="number" required />
-                        <label for="productor_id">ID del Productor:</label>
-                        <input v-model="nuevaFuncion.productor_id" type="number" required />
+                        <form>
+                            <div class="form-group">
+                                <label for="titulo">Título:</label>
+                                <input v-model="nuevaFuncion.titulo" type="text" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="fecha">Fecha:</label>
+                                <input v-model="nuevaFuncion.fecha" type="date" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="hora">Hora:</label>
+                                <input v-model="nuevaFuncion.hora" type="time" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="imagen">Imagen URL:</label>
+                                <input v-model="nuevaFuncion.imagen" type="text" class="form-control" />
+                            </div>
+                            <div class="form-group">
+                                <label for="grupo_id">Grupo:</label>
+                                <select v-model="nuevaFuncion.grupo_id" class="form-control">
+                                    <option v-for="grupo in grupos" :key="grupo.id" :value="grupo.id">{{ grupo.nombre }}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="productor_id">Productor:</label>
+                                <select v-model="nuevaFuncion.productor_id" class="form-control">
+                                    <option v-for="productor in productores" :key="productor.id" :value="productor.id">{{ productor.nombre }}</option>
+                                </select>
+                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -262,6 +362,7 @@ export default {
                 </div>
             </div>
         </div>
+
     </div>
     `,
 };

@@ -30,7 +30,7 @@ const app = Vue.createApp({
       const token = localStorage.getItem("access_token");
       if (!token) {
         // Si no hay un token, redirige a la página de inicio
-        window.location.href = "/index.html"; 
+        window.location.href = "/dash/login.html"; 
 
       } else {
         // Obtener la fecha de expiración del token del almacenamiento local

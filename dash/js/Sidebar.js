@@ -46,33 +46,20 @@ export default {
 
             <!-- GRUPOS -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-layer-group"></i>
-                    <span>Grupos</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Listar</a>
-                        <a class="collapse-item" href="cards.html">Crear</a>
-                    </div>
-                </div>
+            <a class="nav-link" href="./grupos.html">
+                <i class="fas fa-fw fa-layer-group"></i>
+                <span>Grupos</span>
+            </a>
             </li>
 
             <!-- FUNCIONES -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
-                    aria-expanded="true" aria-controls="collapseThree">
-                    <i class="fas fa-fw fa-palette"></i>
-                    <span>Funciones</span>
-                </a>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="buttons.html">Listar</a>
-                        <a class="collapse-item" href="cards.html">Crear</a>
-                    </div>
-                </div>
+            <a class="nav-link" href="./funciones.html">
+                <i class="fas fa-fw fa-palette"></i>
+                <span>Funciones</span>
+            </a>
             </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider" />
 

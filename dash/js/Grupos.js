@@ -230,10 +230,16 @@ export default {
                     </div>
                     <div class="modal-body">
                         <!-- Contenido del formulario de edición -->
-                        <label for="nombre">Nombre:</label>
-                        <input v-model="grupoAEditar.nombre" type="text" required />
-                        <label for="integrantes">Integrantes:</label>
-                        <input v-model="grupoAEditar.integrantes" type="number" required />
+                        <form>
+                            <div class="form-group">
+                                <label for="nombre">Nombre:</label>
+                                <input v-model="grupoAEditar.nombre" type="text" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="integrantes">Integrantes:</label>
+                                <input v-model="grupoAEditar.integrantes" type="number" class="form-control" required />
+                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -255,10 +261,16 @@ export default {
                     </div>
                     <div class="modal-body">
                         <!-- Contenido del formulario de agregar -->
-                        <label for="nombre">Nombre:</label>
-                        <input v-model="nuevoGrupo.nombre" type="text" required />
-                        <label for="integrantes">Integrantes:</label>
-                        <input v-model="nuevoGrupo.integrantes" type="number" required />
+                        <form>
+                            <div class="form-group">
+                                <label for="nombre">Nombre:</label>
+                                <input v-model="nuevoGrupo.nombre" type="text" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="integrantes">Integrantes:</label>
+                                <input v-model="nuevoGrupo.integrantes" type="number" class="form-control" required />
+                            </div>
+                        </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -267,5 +279,6 @@ export default {
                 </div>
             </div>
         </div>
+
     `,
 };

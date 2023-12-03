@@ -218,51 +218,58 @@ export default {
         </div>
     </div>
 
-        <!-- Modal de edición -->
-            <div class="modal" id="editarProductorModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Editar Productor</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Contenido del formulario de edición -->
+    <!-- Modal de edición -->
+    <div class="modal" id="editarProductorModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Productor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del formulario de edición -->
+                    <form>
+                        <div class="form-group">
                             <label for="nombre">Nombre:</label>
-                            <input v-model="productorAEditar.nombre" type="text" required />
+                            <input v-model="productorAEditar.nombre" type="text" class="form-control" required />
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary" @click="guardarCambios">Guardar Cambios</button>
-                        </div>
-                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" @click="guardarCambios">Guardar Cambios</button>
                 </div>
             </div>
-
-            <!-- Modal de agregar -->
-            <div class="modal" id="agregarProductorModal" tabindex="-1" role="dialog">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Agregar Productor</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Contenido del formulario de agregar -->
+        </div>
+    </div>
+    
+    <!-- Modal de agregar -->
+    <div class="modal" id="agregarProductorModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Agregar Productor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Contenido del formulario de agregar -->
+                    <form>
+                        <div class="form-group">
                             <label for="nombre">Nombre:</label>
-                            <input v-model="nuevoProductor.nombre" type="text" required />
+                            <input v-model="nuevoProductor.nombre" type="text" class="form-control" required />
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary" @click="agregarProductor">Agregar Productor</button>
-                        </div>
-                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" @click="agregarProductor">Agregar Productor</button>
                 </div>
             </div>
-
+        </div>
+    </div>    
     `,
 };
