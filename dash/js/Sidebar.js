@@ -1,11 +1,6 @@
 export default {
     data() {
       return {
-        menuItems: [
-          { label: 'Dashboard', link: './index.html' },
-          { label: 'Listar Productores', link: './productores.html' },
-          { label: 'Crear Productor', link: './productores-crear.html' },
-        ],
       };
     },
     template: `
@@ -20,14 +15,26 @@ export default {
             </a>
 
             <!-- Divider -->
-            <hr class="sidebar-divider my-0" />
+            <hr class="sidebar-divider" />
+            
+            <div class="sidebar-heading">Enlaces</div>
 
-            <!-- Nav Item - Dashboard -->
+            <!-- INICIO -->
+            <li class="nav-item">
+            <a class="nav-link" href="/index.html">
+                <i class="fas fa-fw fa-home"></i>
+                <span>Inicio</span>
+            </a>
+            <!-- DASHBOARD -->
             <li class="nav-item">
                 <a class="nav-link" href="./index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
+
+            
+            </li>
+
 
             <!-- Divider -->
             <hr class="sidebar-divider" />
@@ -63,6 +70,7 @@ export default {
             <!-- Divider -->
             <hr class="sidebar-divider" />
 
+            
         </ul>
         <!-- End of Sidebar -->
         `,

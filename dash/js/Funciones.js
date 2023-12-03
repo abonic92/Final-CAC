@@ -14,6 +14,12 @@ export default {
         this.cargarProductores();  
     },
     methods: {
+        logout() {
+            alert("Sesión expirada")
+            clearInterval(this.tokenCheckInterval); 
+            localStorage.removeItem("access_token"); 
+            window.location.href = "/index.html"; 
+          },
         abrirModalAgregar() {
             this.nuevaFuncion = { titulo: '', fecha: '', hora: '', imagen: '', grupo_id: 0, productor_id: 0 };
             $('#agregarFuncionModal').modal('show');
@@ -30,42 +36,34 @@ export default {
                     headers: headers,
                     redirect: "follow",
                 };
-        
                 const response = await fetch("https://gcandia1992.pythonanywhere.com/productores", requestOptions);
-        
                 if (!response.ok) {
                     throw new Error(`Error al cargar datos de productores. Código: ${response.status}`);
                 }
-        
                 const data = await response.json();
                 this.productores = data.productores;
             } catch (error) {
-                console.error("Error al cargar datos de productores:", error);
+                alert("Error al cargar datos de productores:", error);
             }
         },
         async cargarGrupos() {
             try {
                 const token = localStorage.getItem("access_token");
-        
                 const headers = new Headers();
                 headers.append("Authorization", `Bearer ${token}`);
-        
                 const requestOptions = {
                     method: "GET",
                     headers: headers,
                     redirect: "follow",
                 };
-        
                 const response = await fetch("https://gcandia1992.pythonanywhere.com/grupos", requestOptions);
-        
                 if (!response.ok) {
                     throw new Error(`Error al cargar datos de grupos. Código: ${response.status}`);
                 }
-        
                 const data = await response.json();
                 this.grupos = data.grupos;
             } catch (error) {
-                console.error("Error al cargar datos de grupos:", error);
+                alert("Error al cargar datos de grupos:", error);
             }
         },
         async agregarFuncion() {
@@ -75,26 +73,22 @@ export default {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 });
-
                 const requestOptions = {
                     method: 'POST',
                     headers: headers,
                     body: JSON.stringify(this.nuevaFuncion),
                     redirect: 'follow',
                 };
-
                 const response = await fetch('https://gcandia1992.pythonanywhere.com/dashboard/funciones/crear', requestOptions);
-
                 if (!response.ok) {
                     throw new Error(`Error al agregar la función. Código: ${response.status}`);
                 }
-
                 console.log('Función agregada exitosamente');
-
                 this.cargarFunciones();
                 $('#agregarFuncionModal').modal('hide');
             } catch (error) {
                 console.error('Error al agregar la función:', error);
+                this.logout();
             }
         },
         async cargarFunciones() {
@@ -102,68 +96,57 @@ export default {
                 const token = localStorage.getItem("access_token");
                 const headers = new Headers();
                 headers.append("Authorization", `Bearer ${token}`);
-
                 const requestOptions = {
                     method: "GET",
                     headers: headers,
                     redirect: "follow",
                 };
-
                 const response = await fetch("https://gcandia1992.pythonanywhere.com/funciones", requestOptions);
-
                 if (!response.ok) {
                     throw new Error(`Error al cargar datos de funciones. Código: ${response.status}`);
                 }
-
                 const data = await response.json();
                 this.funciones = data.funciones;
             } catch (error) {
-                console.error("Error al cargar datos de funciones:", error);
+                alert("Error al cargar datos de funciones:", error);
             }
         },
         async editarFuncion(funcion) {
             try {
                 const idFuncion = funcion.id;
                 const token = localStorage.getItem('access_token');
-        
                 if (!token) {
                     console.error('Token de acceso no encontrado');
                     return;
                 }
-        
-                // Crear un nuevo objeto solo con los campos necesarios
                 const funcionEditada = {
                     titulo: funcion.titulo,
                     fecha: funcion.fecha,
                     hora: funcion.hora,
                     imagen: funcion.imagen,
-                    grupo_id: funcion.grupo.id, // Cambiar a grupo.id
-                    productor_id: funcion.productor.id, // Cambiar a productor.id
+                    grupo_id: funcion.grupo.id, 
+                    productor_id: funcion.productor.id,
                 };
-        
                 const headers = new Headers({
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'application/json',
                 });
-        
                 const requestOptions = {
                     method: 'PUT',
                     headers: headers,
                     body: JSON.stringify(funcionEditada),
                     redirect: 'follow',
                 };
-        
                 const api = `https://gcandia1992.pythonanywhere.com/dashboard/funciones/${idFuncion}`;
                 const response = await fetch(api, requestOptions);
-        
                 if (!response.ok) {
                     throw new Error(`Error al editar la función. Código: ${response.status}`);
                 }
-        
                 console.log('Función editada exitosamente');
                 this.cargarFunciones();
             } catch (error) {
                 console.error('Error al editar la función:', error);
+                this.logout();
             }
         },
         async eliminarFuncion(funcion) {
@@ -172,27 +155,22 @@ export default {
                 const token = localStorage.getItem('access_token');
                 const headers = new Headers();
                 headers.append("Authorization", `Bearer ${token}`);
-
                 const requestOptions = {
                     method: "DELETE",
                     headers: headers,
                     redirect: "follow",
                 };
-
                 const response = await fetch(`https://gcandia1992.pythonanywhere.com/dashboard/funciones/${idFuncion}`, requestOptions);
-
                 if (!response.ok) {
                     throw new Error(`Error al eliminar la función. Código: ${response.status}`);
                 }
-
                 console.log('Función eliminada exitosamente');
                 this.cargarFunciones();
             } catch (error) {
                 console.error('Error al eliminar la función:', error);
+                this.logout();
             }
         },
-        
-        
         guardarCambios() {
             const funcion = this.funcionAEditar;
             this.editarFuncion(funcion);
