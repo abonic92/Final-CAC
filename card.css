@@ -327,7 +327,7 @@ span {
 }
 
 .carda:hover .intro {
-    height: 220px;
+    height: 100%;
     bottom: 240px;
     background: rgba(100, 0, 0, 0.705);
 }
