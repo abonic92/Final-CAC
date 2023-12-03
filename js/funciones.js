@@ -9,6 +9,14 @@ const app = Vue.createApp({
     this.fetchFunctions();
   },
   methods: {
+    formatDate(value) {
+      if (!value) return "";
+
+      const options = { day: "2-digit", month: "2-digit", year: "numeric" };
+      const date = new Date(value);
+
+      return new Intl.DateTimeFormat("es-ES", options).format(date);
+    },
     async fetchFunctions() {
       try {
         this.loading = true;
@@ -34,8 +42,13 @@ const app = Vue.createApp({
         }
 
         const data = await response.json();
-        this.funciones = data.funciones;
-      } catch (error) {
+        this.funciones = data.funciones.map(funcion => {
+          return {
+            ...funcion,
+            fecha: this.formatDate(funcion.fecha),
+          };
+        });
+        } catch (error) {
         console.error("Error al cargar datos de funciones:", error);
       } finally {
         this.loading = false;
