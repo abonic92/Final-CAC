@@ -7,8 +7,12 @@ import Topbar from './Topbarr.js';
 // -----------  Definición del Footer
 import Footer from './Footer.js';
 
-// -----------  Definición del listado productores
+// -----------  Definición productores
 import Productores from './Productores.js';
+
+// -----------  Definición grupos
+import Grupos from './Grupos.js';
+
 
 // Crear instancia Vue
 const app = Vue.createApp({
@@ -23,8 +27,7 @@ const app = Vue.createApp({
       const token = localStorage.getItem("access_token");
       if (!token) {
         // Si no hay un token, redirige a la página de inicio
-        alert("Su sesión ha expirado");
-        this.logout();
+        window.location.href = "/index.html"; 
 
       } else {
         // Obtener la fecha de expiración del token del almacenamiento local
@@ -68,5 +71,18 @@ app.component('footer-vue', Footer);
 // Registra listado Productores
 app.component('productores', Productores);
 
+// Registra listado Productores
+app.component('grupos', Grupos);
+
 // Montar la aplicación Vue
 app.mount('#dashboard');
+
+// Evento al botón de logout
+const logoutButton = document.getElementById("logoutButton");
+if (logoutButton) {
+    logoutButton.addEventListener("click", (event) => {
+        event.preventDefault(); // Previene el comportamiento predeterminado del enlace
+        localStorage.removeItem("access_token"); // Elimina el token de acceso
+        window.location.href = "/index.html"; // Redirige a la página de cierre de sesión
+    });
+}
