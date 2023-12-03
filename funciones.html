@@ -31,18 +31,22 @@
         <div class="boda">
           <div class="containera">
             <div class="row">
-              <div class="col-md-4" v-for="functionInfo in functions" :key="functionInfo.id">
+              <div class="col-md-4" v-for="funcion in funciones" :key="funcion.id">
                 <div class="carda">
-                  <img :src="functionInfo.download_url" :alt="functionInfo.author" class="card-img-top"
-                    @click="showFunctionDetails(functionInfo)" />
+                  <!-- Puedes ajustar la propiedad de la imagen según tu estructura de datos -->
+                  <img :src="funcion.imagen" :alt="funcion.titulo" class="card-img-top" @click="showFunctionDetails(funcion)" />
                   <div class="intro">
-                    <h1 class="card-title">{{ functionInfo.author }}</h1>
-                    <p>la sala 1 <span>Sala1</span>esta dentro de dentro de dentro de dentro de la sa</p>
+                    <h1 class="card-title">{{ funcion.titulo }}</h1>
+                    <!-- Ajusta las propiedades según tu estructura de datos -->
+                    <p>{{ funcion.fecha }} - {{ funcion.hora }}</p>
+                    <p>Grupo: {{ funcion.grupo.nombre }}</p>
+                    <p>Productor: {{ funcion.productor.nombre }}</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
       </section>
     </div>
   </main>
@@ -54,12 +58,13 @@
         <a href="https://www.instagram.com/"><i class="bx bxl-instagram"></i></a>
         <a href="https://twitter.com/?lang=es"><i class="bx bxl-twitter"></i></a>
       </div>
-      </footer>
+    </footer>
   </div>
-  <script src="./js/funciones.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="./js/funciones.js"></script>
+  
 </body>
 
 </html>
