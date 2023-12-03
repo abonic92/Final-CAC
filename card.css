@@ -413,3 +413,24 @@ span {
 }
 
 
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 0, 0, 0.959); /* Fondo oscuro con transparencia */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+.loader {
+  color: white; /* Color del texto */
+  font-size: 24px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8); /* Fondo oscuro del loader */
+  padding: 20px;
+  border-radius: 8px;
+}

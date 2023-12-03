@@ -3,6 +3,8 @@ const eventosCarousel = {
   data() {
     return {
       funciones: [],
+      loading: false,
+
     };
   },
   mounted() {
@@ -12,6 +14,7 @@ const eventosCarousel = {
   methods: {
     async cargarFunciones() {
       try {
+        this.loading = true
         const token = localStorage.getItem("access_token");
         const headers = new Headers();
         headers.append("Authorization", `Bearer ${token}`);
@@ -32,7 +35,9 @@ const eventosCarousel = {
         this.funciones = data.funciones;
       } catch (error) {
         console.error("Error al cargar datos de funciones:", error);
-      }
+      } finally {
+        this.loading = false;
+    }
     },
   },
   template: `

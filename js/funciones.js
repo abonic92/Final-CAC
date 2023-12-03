@@ -2,6 +2,7 @@ const app = Vue.createApp({
   data() {
     return {
       funciones: [],
+      loading: false,
     };
   },
   mounted() {
@@ -10,6 +11,7 @@ const app = Vue.createApp({
   methods: {
     async fetchFunctions() {
       try {
+        this.loading = true;
         const token = localStorage.getItem("access_token");
         const headers = new Headers();
         headers.append("Authorization", `Bearer ${token}`);
@@ -35,7 +37,9 @@ const app = Vue.createApp({
         this.funciones = data.funciones;
       } catch (error) {
         console.error("Error al cargar datos de funciones:", error);
-      }
+      } finally {
+        this.loading = false;
+    }
     },
     showFunctionDetails(funcion) {
       // Lógica para mostrar detalles de la función, si es necesario
