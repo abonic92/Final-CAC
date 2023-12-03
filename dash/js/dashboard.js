@@ -13,6 +13,9 @@ import Productores from './Productores.js';
 // -----------  Definición grupos
 import Grupos from './Grupos.js';
 
+// -----------  Definición funciones
+import Funciones from './Funciones.js';
+
 
 // Crear instancia Vue
 const app = Vue.createApp({
@@ -73,6 +76,9 @@ app.component('productores', Productores);
 
 // Registra listado Productores
 app.component('grupos', Grupos);
+
+// Registra listado Funciones
+app.component('funciones', Funciones);
 
 // Montar la aplicación Vue
 app.mount('#dashboard');

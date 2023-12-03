@@ -39,8 +39,8 @@ export default {
                 }
 
                 console.log('Grupo agregado exitosamente');
-                // Puedes realizar acciones adicionales después de la adición si es necesario
-                this.cargarGrupos(); // Recargar la lista de grupos
+
+                this.cargarGrupos(); // Recargar la lista
                 // Cerrar el modal después de agregar el grupo
                 $('#agregarGrupoModal').modal('hide');
             } catch (error) {

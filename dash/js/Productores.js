@@ -105,7 +105,10 @@ export default {
                 }
         
                 console.log('Productor editado exitosamente');
-                // Puedes realizar acciones adicionales después de la edición si es necesario
+
+                this.cargarProductores() // Recargar la lista
+
+
             } catch (error) {
                 console.error('Error al editar el productor:', error);
             }
