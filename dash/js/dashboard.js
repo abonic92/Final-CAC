@@ -1,15 +1,14 @@
-// -----------------------------------------------------------------------  Definición del Sidebar
-
+// ----------- Definición del Sidebar
 import Sidebar from './Sidebar.js';
 
-// -----------------------------------------------------------------------  Definición del Topbar
-
+// -----------  Definición del Topbar
 import Topbar from './Topbarr.js';
 
-
-// -----------------------------------------------------------------------  Definición del Footer
-
+// -----------  Definición del Footer
 import Footer from './Footer.js';
+
+// -----------  Definición del listado productores
+import Productores from './Productores.js';
 
 
 // Crear instancia Vue
@@ -32,6 +31,9 @@ app.component('topbar', Topbar);
 
 // Registra el Footer
 app.component('footer-vue', Footer);
+
+// Registra listado Productores
+app.component('productores', Productores);
 
 // Evento al botón de logout
 const logoutButton = document.getElementById("logoutButton");

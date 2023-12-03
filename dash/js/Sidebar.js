@@ -3,8 +3,8 @@ export default {
       return {
         menuItems: [
           { label: 'Dashboard', link: './index.html' },
-          { label: 'Listar Productores', link: './productores/listar.html' },
-          { label: 'Crear Productor', link: './productores/crear.html' },
+          { label: 'Listar Productores', link: './productores.html' },
+          { label: 'Crear Productor', link: './productores-crear.html' },
         ],
       };
     },
@@ -44,8 +44,8 @@ export default {
                 </a>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="./productores/listar.html">Listar</a>
-                        <a class="collapse-item" href="./productores/crear.html">Crear</a>
+                        <a class="collapse-item" href="./productores.html">Listar</a>
+                        <a class="collapse-item" href="./productores-crear.html">Crear</a>
                     </div>
                 </div>
             </li>
