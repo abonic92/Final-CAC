@@ -315,7 +315,7 @@ span {
 }
 
 .intro {
-    height: 70px;
+    height: auto;
     max-width: 350px; /* Set maximum width to 100% */
     box-sizing: border-box;
     padding: 6px;
