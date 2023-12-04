@@ -1,20 +1,17 @@
-// eventosCarousel.js
 const eventosCarousel = {
   data() {
     return {
       funciones: [],
       loading: false,
-
     };
   },
   mounted() {
-    // Llama a la función para cargar funciones desde la API aquí
     this.cargarFunciones();
   },
   methods: {
     async cargarFunciones() {
       try {
-        this.loading = true
+        this.loading = true;
         const token = localStorage.getItem("access_token");
         const headers = new Headers();
         headers.append("Authorization", `Bearer ${token}`);
@@ -32,12 +29,25 @@ const eventosCarousel = {
         }
 
         const data = await response.json();
-        this.funciones = data.funciones;
+        this.funciones = data.funciones.map(funcion => {
+          return {
+            ...funcion,
+            fecha: this.formatDate(funcion.fecha),
+          };
+        });
       } catch (error) {
         console.error("Error al cargar datos de funciones:", error);
       } finally {
         this.loading = false;
-    }
+      }
+    },
+    formatDate(value) {
+      if (!value) return "";
+
+      const options = { day: "2-digit", month: "2-digit", year: "numeric" };
+      const date = new Date(value);
+
+      return new Intl.DateTimeFormat("es-ES", options).format(date);
     },
   },
   template: `
@@ -73,22 +83,21 @@ const eventosCarousel = {
     </div>
   `,
   computed: {
-    // Compute a new array containing groups of 3 funciones
     chunkedFunciones() {
       const size = 3;
       return this.funciones.reduce((accumulator, currentValue, index) => {
         const chunkIndex = Math.floor(index / size);
 
         if (!accumulator[chunkIndex]) {
-          accumulator[chunkIndex] = []; // start a new chunk
+          accumulator[chunkIndex] = [];
         }
 
         accumulator[chunkIndex].push(currentValue);
 
         return accumulator;
       }, []);
-    }
-  }
+    },
+  },
 };
 
 const app = Vue.createApp(eventosCarousel);
