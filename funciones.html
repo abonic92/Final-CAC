@@ -21,7 +21,8 @@
         <li><a href="index.html">Inicio</a></li>
         <li><a href="funciones.html">Funciones</a></li>
         <li><a href="contacto.html">Contacto</a></li>
-        <li><a href="/dash/login.html">Login</a></li>
+        <li id="loginLink"><a href="/dash/login.html">Login</a></li>
+        <li id="logoutLink"><a id="logoutButton" href="#">Logout</a></li>
       </ul>
     </nav>
   </header>
@@ -42,12 +43,16 @@
                 <div class="carda">
                   <!-- Puedes ajustar la propiedad de la imagen según tu estructura de datos -->
                   <img :src="funcion.imagen" :alt="funcion.titulo" class="card-img-top" @click="showFunctionDetails(funcion)" />
+                  <button @click="agregarAlCarrito(funcion)" class="btn btn-outline-warning btn-comprar">COMPRAR</button>
+
                   <div class="intro">
+                    
                     <h1 class="card-title">{{ funcion.titulo }}</h1>
                     <!-- Ajusta las propiedades según tu estructura de datos -->
                     <p>{{ funcion.fecha }} - {{ funcion.hora }}</p>
                     <p>Grupo: {{ funcion.grupo.nombre }}</p>
                     <p>Productor: {{ funcion.productor.nombre }}</p>
+
                   </div>
                 </div>
               </div>

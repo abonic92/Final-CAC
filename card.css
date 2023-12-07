@@ -292,6 +292,13 @@ img {
     margin: 50px;
     box-shadow: 5px 5px 20px rgb(0, 0, 0);
     overflow: hidden;
+    position: relative;
+}
+.btn-comprar {
+  position: absolute;
+  top: 300px; /* Ajusta según tu preferencia de distancia desde la parte superior */
+  right: 10px; /* Ajusta según tu preferencia de distancia desde la parte derecha */
+  z-index: 0; /* Asegura que el botón esté sobre la imagen */
 }
 
 h1 {
@@ -368,6 +375,12 @@ span {
     opacity: 1;
     visibility: visible;
   }
+  .btn-comprar {
+    position: absolute;
+    top: 240px; /* Ajusta según tu preferencia de distancia desde la parte superior */
+    right: 10px; /* Ajusta según tu preferencia de distancia desde la parte derecha */
+    z-index: 0; /* Asegura que el botón esté sobre la imagen */
+  }
 
   .intro {
     height: 70px;
@@ -434,3 +447,5 @@ span {
   padding: 20px;
   border-radius: 8px;
 }
+
+

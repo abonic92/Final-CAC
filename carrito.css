@@ -1,0 +1,46 @@
+/* Estilos específicos para la tabla del carrito */
+table {
+    color: #f7f7f7;
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #000;
+    text-align: center;
+    background-color: #313131;
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+/* Agrega un contenedor alrededor de la tabla para aplicar el scroll horizontal */
+.table-container {
+    overflow-x: auto;
+}
+
+th, td {
+    border: 1px solid #2b2a2a;
+    padding: 10px; /* Ajusta el espacio interno de las celdas */
+}
+
+th {
+    background-image: rgb(247, 0, 0);
+}
+
+td {
+    background: rgb(216, 216, 216);
+}
+
+tr:hover {
+    background: #fcd03100;
+}
+
+/* Estilos para el contenedor cuerpo */
+.cuerpo {
+    display: flex;
+    flex-direction: column;
+    min-height: 85vh;
+}
+
+.image {
+    max-width: 100px; /* Ajusta el ancho máximo de la imagen según tus necesidades */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centra la imagen dentro de la celda */
+}
