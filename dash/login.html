@@ -18,7 +18,6 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
 </head>
 
 <body class="bg-gradient-primary">
@@ -87,8 +86,18 @@
 
         </div>
     </div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+
     <script>
         const app = Vue.createApp({
             data() {
@@ -121,10 +130,26 @@
                     .then(response => response.json())
                     .then(data => {
                         if (data.access_token) {
-                            // Hacer algo con el token de acceso, por ejemplo, redirigir a una página protegida
+                             // Decodificar el token manualmente (cpgt) -- no podía instalar jwt desde npm como lo haría normalmente dentro de vue o react;
+                            const base64Url = data.access_token.split('.')[1];
+                            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                            const decodedToken = JSON.parse(atob(base64));
+
+                            // Obtener el rol del token decodificado
+                            const userRoles = decodedToken.roles.join(',');
+
+                            // Almacenar el rol y el token en el localStorage
+                            localStorage.setItem('user_roles', userRoles);
                             localStorage.setItem('access_token', data.access_token);
-                            window.location.href = '/dash/index.html';
-                            console.log('Inicio de sesión: ', data.access_token);
+
+                            // Verificar si el rol es 'administrador'
+                            if (userRoles.includes('administrador')) {
+                                alert('Usuario autenticado tipo: '+ userRoles);
+                                window.location.href = '/dash/index.html';
+                            } else {
+                                alert('Usuario autenticado tipo: '+ userRoles);
+                                window.location.href = '/index.html';
+                            }
                         } else {
                             alert('Credenciales incorrectas');
                         }
@@ -133,31 +158,12 @@
                 }
             }
         });
-
+    
         app.mount('#app');
     </script>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    </script>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
 
 </body>
 

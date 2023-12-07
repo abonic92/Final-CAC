@@ -28,9 +28,9 @@ const app = Vue.createApp({
     mounted() {
       // Verificar si hay un token de acceso almacenado
       const token = localStorage.getItem("access_token");
-      if (!token) {
-        // Si no hay un token, redirige a la página de inicio
-        window.location.href = "/dash/login.html"; 
+      const rolUsuario = localStorage.getItem("user_roles");
+      if (!token || rolUsuario !== 'administrador') {
+        window.location.href = "/denied.html"; 
 
       } else {
         // Obtener la fecha de expiración del token del almacenamiento local
