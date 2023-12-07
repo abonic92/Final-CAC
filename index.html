@@ -15,67 +15,110 @@
 </head>
 
 <body>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="">
-          <img id="logo" src="./img/logo1.png" alt="Logo de mi página">
-        </div>
-        <ul class="nav-links">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="funciones.html">Funciones</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-          <li id="loginLink"><a href="/dash/login.html">Login</a></li>
-        </ul>
-      </nav>
 
-    <!-- Portada -->
-    <div>
-        <section class="hero">
-            <div class="container2">
-                <h1 id="titulo-portfolio">La Sala Teatro</h1>
-                <p>Te damos la bienvenida a disfrutar de un espacio diferente.</p>
+    <body>
+        <!-- Navbar -->
+
+
+        <nav class="navbar navbar-expand-sm navbar-dark bg-black " aria-label="Third navbar example">
+            <div class="container-fluid ">
+                <div class="">
+                    <img id="logo" src="./img/logo1.png" alt="Logo de mi página">
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarsExample03">
+                    <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+
+
+                    </ul>
+                    <ul class="nav ">
+                        <li class="nav-item nav-links">
+                            <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item nav-links">
+                            <a class="nav-link active" aria-current="page" href="funciones.html">Funciones</a>
+                        </li>
+                        <li class="nav-item nav-links">
+                            <a class="nav-link active" aria-current="page" href="carrito.html">Carrito</a>
+                        </li>
+                        <li class="nav-item nav-links">
+                            <a class="nav-link active" aria-current="page" href="contacto.html">Contacto</a>
+                        </li>
+
+
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle text-light nav-links border border-danger rounded-2" href="#" data-bs-toggle="dropdown"
+                                aria-expanded="false"><strong>Sesion</strong></a>
+                            <ul class="dropdown-menu">
+                                <li id="loginLink"><a class="dropdown-item" href="/dash/login.html">Login</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        <!-- Portada -->
+        <div>
+            <section class="hero">
+                <div class="container2">
+                    <h1 id="titulo-portfolio">La Sala Teatro</h1>
+                    <p>Te damos la bienvenida a disfrutar de un espacio diferente.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Sección de historia del teatro -->
+        <section class="presentacion">
+            <div class="container24">
+                <h2>¡Bienvenidos a LA SALA TEATRO!</h2>
+
+                <p> LA SALA TEATRO es mucho más que un espacio escénico; es un rincón vibrante donde las artes escénicas
+                    cobran vida. </p>
+
+                <div class="video-container iframe">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/tNjDskPymsc?si=jkRzOUOFpD8p784r"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+
+                <p> Ubicada en el corazón de la ciudad, nuestra sala se erige como un santuario para la creatividad, la
+                    expresión y el encuentro cultural. </p>
+                <p>
+                    Desde su inauguración, LA SALA TEATRO se ha comprometido a ser un faro de innovación y calidad en el
+                    mundo del teatro.
+                    Nos enorgullece ser un espacio inclusivo que celebra la diversidad en todas sus formas.
+                    Colaboramos con talentos locales e internacionales para ofrecer una programación ecléctica que
+                    refleje la riqueza de la expresión artística contemporánea.
+                </p>
+                <h2>¡Te invitamos a ser parte de nuestro vibrante mundo escénico! </h2>
             </div>
         </section>
-    </div>
 
-    <!-- Sección de historia del teatro -->
-    <section class="presentacion">
-        <div class="container24">
-            <h2>¡Bienvenidos a LA SALA TEATRO!</h2>
-            
-            <p> LA SALA TEATRO es mucho más que un espacio escénico; es un rincón vibrante donde las artes escénicas cobran vida. </p>
+        <div id="eventosCarousel"></div>
 
-            <div class="video-container iframe">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/tNjDskPymsc?si=jkRzOUOFpD8p784r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <footer class="footer">
+            <p>&copy; 2023 La Sala Teatro</p>
+            <div>
+                <a href="https://www.facebook.com/"><i class='bx bxl-facebook-circle'></i></a>
+                <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+                <a href="https://twitter.com/?lang=es"><i class='bx bxl-twitter'></i></a>
             </div>
+        </footer>
 
-            <p> Ubicada en el corazón de la ciudad, nuestra sala se erige como un santuario para la creatividad, la expresión y el encuentro cultural. </p>
-            <p> 
-                Desde su inauguración, LA SALA TEATRO se ha comprometido a ser un faro de innovación y calidad en el mundo del teatro.
-                Nos enorgullece ser un espacio inclusivo que celebra la diversidad en todas sus formas.
-                Colaboramos con talentos locales e internacionales para ofrecer una programación ecléctica que refleje la riqueza de la expresión artística contemporánea.
-            </p>
-            <h2>¡Te invitamos a ser parte de nuestro vibrante mundo escénico! </h2>
-        </div>
-    </section>
+        <!-- Enlaces a Bootstrap JS y scripts personalizados -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.min.js"></script>
+        <script src="./js/eventosCarousel.js"></script>
 
-    <div id="eventosCarousel"></div>
-    
-    <footer class="footer">
-        <p>&copy; 2023 La Sala Teatro</p>
-        <div>
-            <a href="https://www.facebook.com/"><i class='bx bxl-facebook-circle'></i></a>
-            <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
-            <a href="https://twitter.com/?lang=es"><i class='bx bxl-twitter'></i></a>
-        </div>
-    </footer>
-
-    <!-- Enlaces a Bootstrap JS y scripts personalizados -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.min.js"></script>
-    <script src="./js/eventosCarousel.js"></script>
-
-</body>
+    </body>
 
 </html>
