@@ -30,6 +30,7 @@ const app = Vue.createApp({
       const token = localStorage.getItem("access_token");
       const rolUsuario = localStorage.getItem("user_roles");
       if (!token || rolUsuario !== 'administrador') {
+        this.logout();
         window.location.href = "/denied.html"; 
 
       } else {
