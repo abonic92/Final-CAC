@@ -298,7 +298,7 @@ img {
   position: absolute;
   top: 300px; /* Ajusta según tu preferencia de distancia desde la parte superior */
   right: 10px; /* Ajusta según tu preferencia de distancia desde la parte derecha */
-  z-index: 0; /* Asegura que el botón esté sobre la imagen */
+  z-index: ; /* Asegura que el botón esté sobre la imagen */
 }
 
 h1 {
@@ -335,7 +335,7 @@ span {
 
 .carda:hover .intro {
     height: 100%;
-    bottom: 240px;
+    bottom: 300px;
     background: rgba(100, 0, 0, 0.705);
 }
 

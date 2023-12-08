@@ -39,6 +39,8 @@ function addToCart(productId) {
 function updateCart() {
     const cartItems = document.getElementById('cart-items');
     const cartTotal = document.getElementById('cart-total');
+    const comenzarComprandoBtn = document.getElementById('comenzar-comprando-btn');
+    const continuarComprandoBtn = document.getElementById('continuar-comprando-btn');
 
     cartItems.innerHTML = '';
     let total = 0;
@@ -60,6 +62,15 @@ function updateCart() {
     });
 
     cartTotal.textContent = total.toFixed(2);
+
+    // Mostrar/ocultar botones según el estado del carrito
+    if (cart.length === 0) {
+        comenzarComprandoBtn.style.display = 'block';
+        continuarComprandoBtn.style.display = 'none';
+    } else {
+        comenzarComprandoBtn.style.display = 'none';
+        continuarComprandoBtn.style.display = 'block';
+    }
 }
 
 function decreaseQuantity(productId) {
@@ -96,24 +107,24 @@ function checkout() {
 
 window.onload = displayProducts;
 
-
 const app = Vue.createApp({
     data() {
-      return {
-        funciones: [], // Asegúrate de tener datos en funciones
-        loading: false,
-      };
+        return {
+            funciones: [], // Asegúrate de tener datos en funciones
+            loading: false,
+        };
     },
     methods: {
-      showFunctionDetails(funcion) {
-        // Implementa la lógica para mostrar los detalles de la función
-        console.log(`Detalles de la función: ${funcion.titulo}`);
-      },
-      agregarAlCarrito(funcion) {
-        // Implementa la lógica para agregar la función al carrito
-        console.log(`Agregado al carrito: ${funcion.titulo}`);
-      },
+        showFunctionDetails(funcion) {
+            // Implementa la lógica para mostrar los detalles de la función
+            console.log(`Detalles de la función: ${funcion.titulo}`);
+        },
+        agregarAlCarrito(funcion) {
+            // Implementa la lógica para agregar la función al carrito
+            console.log(`Agregado al carrito: ${funcion.titulo}`);
+        },
     },
-  });
-  
-  app.mount("#app");
+});
+
+
+app.mount("#app");
