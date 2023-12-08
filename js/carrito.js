@@ -1,130 +1,154 @@
-const products = [
-    { id: 1, name: 'Producto 1', price: 10.99, image: 'product1.jpg' },
-    { id: 2, name: 'Producto 2', price: 19.99, image: 'product2.jpg' },
-    { id: 3, name: 'Producto 3', price: 5.99, image: 'product3.jpg' }
-];
+export default {
+  data() {
+    return {
+      carritoVacio: true,
+    };
+  },
+  template: `
+  <div class="cuerpo">
+        <h2 class="container23">Carrito de Compras</h2>
+          <section class="carrito">
+              <div class="table-container">
+                  <!-- Agrega una condición para mostrar el botón correcto -->
+                  <button v-if="carritoVacio" class="btn btn-outline-success" onclick="comenzarComprando()">Comenzar a comprar</button>
+                  <button v-else class="btn btn-outline-primary" onclick="continuarComprando()">Continuar comprando</button>
 
-const cart = [];
+                  <table class="table table-dark table-hover">
+                      <thead>
+                          <tr>
+                              <th>Imagen</th>
+                              <th>Funcion</th>
+                              <th>Precio Unitario</th>
+                              <th>Cantidad</th>
+                              <th>Subtotal</th>
+                              <th>Acciones</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                          <td><img src="/img/sala.jpg" alt="" class="image"></td>
+                          <td>fffffffffffffffffffffffffddddddddddddddddddddddddddddddd</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>
+                              <button
+                                  type="button"
+                                  class="btn btn-outline-warning "
+                                  data-bs-toggle="button"
+                                  aria-pressed="false"
+                                  autocomplete="off"
+                              >-
+                              </button>
+                              <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                              data-bs-toggle="button"
+                              aria-pressed="false"
+                              autocomplete="off"
+                              >+
+                              </button>
+                              
+                              <button
+                                  type="button"
+                                  class="btn btn-outline-danger"
+                                  data-bs-toggle="button"
+                                  aria-pressed="false"
+                                  autocomplete="off"
+                              >
+                                  Eliminar
+                              </button>
+                          </td>
+                      </tr>
+                      <tr>
+                          <td><img src="/img/" alt=""></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>
+                              <button
+                                  type="button"
+                                  class="btn btn-outline-warning "
+                                  data-bs-toggle="button"
+                                  aria-pressed="false"
+                                  autocomplete="off"
+                              >-
+                              </button>
+                              <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                              data-bs-toggle="button"
+                              aria-pressed="false"
+                              autocomplete="off"
+                              >+
+                              </button>
+                              
+                              <button
+                                  type="button"
+                                  class="btn btn-outline-danger"
+                                  data-bs-toggle="button"
+                                  aria-pressed="false"
+                                  autocomplete="off"
+                              >
+                                  Eliminar
+                              </button>
+                              
+                          </td>
+                      </tr>
+                      <tr>
+                          <td><img src="/img/" alt=""></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>
+                              <button
+                              type="button"
+                              class="btn btn-outline-warning "
+                              data-bs-toggle="button"
+                              aria-pressed="false"
+                              autocomplete="off"
+                          >-
+                          </button>
+                          <button
+                          type="button"
+                          class="btn btn-outline-primary"
+                          data-bs-toggle="button"
+                          aria-pressed="false"
+                          autocomplete="off"
+                          >+
+                          </button>
+                          
+                          <button
+                              type="button"
+                              class="btn btn-outline-danger"
+                              data-bs-toggle="button"
+                              aria-pressed="false"
+                              autocomplete="off"
+                          >
+                              Eliminar
+                          </button>
+                              <!-- <button @click="eliminarDelCarrito(index)" class="boton-rojo">Eliminar</button> -->
+                          </td>
+                      </tr>
+                  </tbody>
 
-function displayProducts() {
-    const productList = document.getElementById('product-list');
-    productList.innerHTML = '';
-
-    products.forEach(product => {
-        const productCard = document.createElement('div');
-        productCard.className = 'product-card';
-        productCard.innerHTML = `
-            <h3>${product.name}</h3>
-            <img src="${product.image}" alt="${product.name}" class="product-image">
-            <p>Precio: $${product.price.toFixed(2)}</p>
-            <button onclick="addToCart(${product.id})">Agregar al carrito</button>
-        `;
-        productList.appendChild(productCard);
-    });
-}
-
-function addToCart(productId) {
-    const selectedProduct = products.find(product => product.id === productId);
-    const existingItem = cart.find(item => item.id === productId);
-
-    if (existingItem) {
-        existingItem.quantity += 1;
-    } else {
-        cart.push({ ...selectedProduct, quantity: 1 });
-    }
-
-    updateCart();
-}
-
-function updateCart() {
-    const cartItems = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-    const comenzarComprandoBtn = document.getElementById('comenzar-comprando-btn');
-    const continuarComprandoBtn = document.getElementById('continuar-comprando-btn');
-
-    cartItems.innerHTML = '';
-    let total = 0;
-
-    cart.forEach(item => {
-        const cartItem = document.createElement('div');
-        cartItem.className = 'cart-item';
-        cartItem.innerHTML = `
-            <h3>${item.name}</h3>
-            <img src="${item.image}" alt="${item.name}" class="product-image">
-            <p>Precio: $${item.price.toFixed(2)}</p>
-            <p>Cantidad: ${item.quantity}</p>
-            <button onclick="decreaseQuantity(${item.id})">-</button>
-            <button onclick="increaseQuantity(${item.id})">+</button>
-            <button onclick="removeFromCart(${item.id})">Eliminar</button>
-        `;
-        cartItems.appendChild(cartItem);
-        total += item.price * item.quantity;
-    });
-
-    cartTotal.textContent = total.toFixed(2);
-
-    // Mostrar/ocultar botones según el estado del carrito
-    if (cart.length === 0) {
-        comenzarComprandoBtn.style.display = 'block';
-        continuarComprandoBtn.style.display = 'none';
-    } else {
-        comenzarComprandoBtn.style.display = 'none';
-        continuarComprandoBtn.style.display = 'block';
-    }
-}
-
-function decreaseQuantity(productId) {
-    const itemIndex = cart.findIndex(item => item.id === productId);
-
-    if (cart[itemIndex].quantity > 1) {
-        cart[itemIndex].quantity -= 1;
-    } else {
-        cart.splice(itemIndex, 1);
-    }
-
-    updateCart();
-}
-
-function increaseQuantity(productId) {
-    const itemIndex = cart.findIndex(item => item.id === productId);
-    cart[itemIndex].quantity += 1;
-
-    updateCart();
-}
-
-function removeFromCart(productId) {
-    const itemIndex = cart.findIndex(item => item.id === productId);
-    cart.splice(itemIndex, 1);
-
-    updateCart();
-}
-
-function checkout() {
-    alert('Compra realizada. Gracias por tu compra!');
-    cart.length = 0;
-    updateCart();
-}
-
-window.onload = displayProducts;
-
-const app = Vue.createApp({
-    data() {
-        return {
-            funciones: [], // Asegúrate de tener datos en funciones
-            loading: false,
-        };
-    },
-    methods: {
-        showFunctionDetails(funcion) {
-            // Implementa la lógica para mostrar los detalles de la función
-            console.log(`Detalles de la función: ${funcion.titulo}`);
-        },
-        agregarAlCarrito(funcion) {
-            // Implementa la lógica para agregar la función al carrito
-            console.log(`Agregado al carrito: ${funcion.titulo}`);
-        },
-    },
-});
-
-
-app.mount("#app");
+                  <tfoot>
+                      <tr>
+                          <th colspan="4">Total General:</th>
+                          <th>Calcular Total</th>
+                          <th>
+                              <div class="d-grid gap-2">
+                                  <button type="button" name="" id="" class="btn btn-outline-success">Finalizar Compra</button>
+                              </div>
+                              <!-- <button @click="finalizarCompra" class="boton-verde">Finalizar Compra</button> -->
+                          </th>
+                      </tr>
+                  </tfoot>
+              </table>
+            </div>
+          </section>
+      </div>
+  `,
+};

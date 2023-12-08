@@ -1,4 +1,4 @@
-const app = Vue.createApp({
+export default {
   data() {
     return {
       funciones: [],
@@ -42,23 +42,52 @@ const app = Vue.createApp({
         }
 
         const data = await response.json();
-        this.funciones = data.funciones.map(funcion => {
+        this.funciones = data.funciones.map((funcion) => {
           return {
             ...funcion,
             fecha: this.formatDate(funcion.fecha),
           };
         });
-        } catch (error) {
+      } catch (error) {
         console.error("Error al cargar datos de funciones:", error);
       } finally {
         this.loading = false;
-    }
+      }
     },
     showFunctionDetails(funcion) {
       // Lógica para mostrar detalles de la función, si es necesario
       console.log("Detalles de la función:", funcion);
     },
   },
-});
+  template: `
+  <main>
+    <div v-if="loading" class="loader-overlay">
+      <div class="loader">Cargando...</div>
+    </div>
 
-app.mount("#app");
+    <section class="gallery">
+      <div class="boda">
+        <div class="containera">
+          <div class="row">
+            <div class="col-md-4" v-for="funcion in funciones" :key="funcion.id">
+              <div class="carda">
+                <img :src="funcion.imagen" :alt="funcion.titulo" class="card-img-top"
+                  @click="showFunctionDetails(funcion)" />
+                <button @click="agregarAlCarrito(funcion)"
+                  class="btn btn-outline-warning btn-comprar">COMPRAR</button>
+                <div class="intro">
+                  <h1 class="card-title">{{ funcion.titulo }}</h1>
+                  <p>{{ funcion.fecha }} - {{ funcion.hora }}</p>
+                  <p>Grupo: {{ funcion.grupo.nombre }}</p>
+                  <p>Productor: {{ funcion.productor.nombre }}</p>
+                  <p>Precio: {{ funcion.precio }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  `,
+};
