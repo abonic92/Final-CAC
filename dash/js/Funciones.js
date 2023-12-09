@@ -4,7 +4,7 @@ export default {
         return {
             funciones: [],
             funcionAEditar: { titulo: '', fecha: '', hora: '', imagen: '', grupo_id: 0, productor_id: 0, grupo_nombre: '', productor_nombre: '', precio: 0, activa: true},
-            nuevaFuncion: { titulo: '', fecha: '', hora: '', imagen: '', grupo_id: 0, productor_id: 0, precio: 0, activa: true },
+            nuevaFuncion: { titulo: '', fecha: '', hora: '', imagen: '', grupo_id: 0, productor_id: 0, precio: 0, activa: true},
         };
     },
     mounted() {
@@ -86,10 +86,7 @@ export default {
                 this.cargarFunciones();
                 $('#agregarFuncionModal').modal('hide');
             } catch (error) {
-                console.error('Error al agregar la función:', error);
-                console.log(token)
-                console.log(this.nuevaFuncion)
-//                this.logout();
+                this.logout();
             }
         },
         async cargarFunciones() {
