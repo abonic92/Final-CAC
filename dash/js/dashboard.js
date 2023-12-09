@@ -16,6 +16,9 @@ import Grupos from './Grupos.js';
 // -----------  Definición funciones
 import Funciones from './Funciones.js';
 
+// -----------  Definición usuarios
+import Usuarios from './Usuarios.js';
+
 
 // Crear instancia Vue
 const app = Vue.createApp({
@@ -81,6 +84,9 @@ app.component('grupos', Grupos);
 
 // Registra listado Funciones
 app.component('funciones', Funciones);
+
+// Registra listado Usuarios
+app.component('usuarios', Usuarios);
 
 // Montar la aplicación Vue
 app.mount('#dashboard');

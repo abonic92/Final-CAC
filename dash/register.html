@@ -23,68 +23,64 @@
 </head>
 
 <body class="bg-gradient-primary">
-
-    <div class="container">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
-                    <div class="col-lg-7">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
-                            </div>
-                            <form class="user">
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="exampleFirstName"
-                                            placeholder="First Name">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="exampleLastName"
-                                            placeholder="Last Name">
-                                    </div>
+    <div id="app">
+        <div class="container">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                        <div class="col-lg-7">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                                 </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
-                                </div>
-                                <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword" placeholder="Password">
+                                <!-- Agrega @submit.prevent para evitar la recarga de la página -->
+                                <form class="user" @submit.prevent="register">
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="text" class="form-control form-control-user" name="nombre" v-model="nombre" placeholder="Nombre">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control form-control-user" name="apellido" v-model="apellido" placeholder="Apellido">
+                                        </div>
                                     </div>
-                                    <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword" placeholder="Repeat Password">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control form-control-user" name="email" v-model="email" placeholder="Correo electrónico">
                                     </div>
-                                </div>
-                                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                                    Register Account
-                                </a>
+                                    <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <input type="password" class="form-control form-control-user" name="password" v-model="password" placeholder="Contraseña">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="password" class="form-control form-control-user" name="repeat_password" v-model="repeat_password" placeholder="Repetir Contraseña">
+                                        </div>
+                                    </div>
+                                    <!-- Cambia el type de button a submit para activar el evento @submit -->
+                                    <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        Registrarse
+                                    </button>
+                                    <hr>
+                                    <a href="forgot-password.html" class="btn btn-google btn-user btn-block">
+                                        <i class="fab fa-google fa-fw"></i> Register with Google
+                                    </a>
+                                    <a href="forgot-password.html" class="btn btn-facebook btn-user btn-block">
+                                        <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                                    </a>
+                                </form>
                                 <hr>
-                                <a href="index.html" class="btn btn-google btn-user btn-block">
-                                    <i class="fab fa-google fa-fw"></i> Register with Google
-                                </a>
-                                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                    <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                                </a>
-                            </form>
-                            <hr>
-                            <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
-                            </div>
-                            <div class="text-center">
-                                <a class="small" href="login.html">Already have an account? Login!</a>
+                                <div class="text-center">
+                                    <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                </div>
+                                <div class="text-center">
+                                    <a class="small" href="login.html">Already have an account? Login!</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- Bootstrap core JavaScript-->
@@ -96,6 +92,73 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    nombre: '',
+                    apellido: '',
+                    email: '',
+                    password: '',
+                    repeatPassword: ''
+                };
+            },
+            methods: {
+                register() {
+                      fetch('https://gcandia1992.pythonanywhere.com/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            nombre: this.nombre,
+                            apellido: this.apellido,
+                            email: this.email,
+                            password: this.password,
+                        }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.access_token) {
+                            // Decodificar el token manualmente (cpgt) -- no podía instalar jwt desde npm como lo haría normalmente dentro de vue o react;
+                           const base64Url = data.access_token.split('.')[1];
+                           const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                           const decodedToken = JSON.parse(atob(base64));
+
+                           let userRoles = [];
+                           // Verifica si la respuesta tiene la propiedad 'roles' y es un array
+                           if (data.roles && Array.isArray(data.roles)) {
+                                userRoles = data.roles.join(',');
+                           }
+
+
+                           // Almacenar el rol y el token en el localStorage
+                           localStorage.setItem('user_roles', userRoles);
+                           localStorage.setItem('access_token', data.access_token);
+
+                           // Verificar si el rol es 'administrador'
+                           if (userRoles.includes('administrador')) {
+                               alert('Registrado con éxito');
+                               window.location.href = '/dash/index.html';
+                           } else {
+                               alert('Registrado con éxito');
+                               window.location.href = '/index.html';
+                           }
+                       } else {
+                           alert('Credenciales incorrectas');
+                       }
+                    })
+                    .catch(error => console.error('Error:', error));
+                }
+            }
+        });
+
+        app.mount('#app');
+    </script>
+
 
 </body>
 
