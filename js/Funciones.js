@@ -46,6 +46,7 @@ export default {
           return {
             ...funcion,
             fecha: this.formatDate(funcion.fecha),
+            cantidad: 0,
           };
         });
       } catch (error) {
@@ -57,6 +58,25 @@ export default {
     showFunctionDetails(funcion) {
       // Lógica para mostrar detalles de la función, si es necesario
       console.log("Detalles de la función:", funcion);
+    },
+    agregarAlCarrito: function(funcion) {
+      
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      console.log('El carrito tenía:'+carrito)
+      const index = carrito.findIndex((item) => item.id === funcion.id);
+      console.log('Función: '+funcion)
+      if (index !== -1) {
+        // Si la función ya está en el carrito, actualizar la cantidad
+        carrito[index].cantidad++;
+      } else {
+        // Si no está en el carrito, agregarla con cantidad 1
+        carrito.push({ ...funcion, cantidad: 1 });
+      }
+      console.log('ahora tiene: '+carrito)
+      // Guardar el carrito actualizado localmente
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      // Mostrar notificación si el navegador lo soporta
+      alert(funcion.titulo+' - Precio: $'+funcion.precio+', agregada al carrito');
     },
   },
   template: `
@@ -73,9 +93,10 @@ export default {
               <div class="carda">
                 <img :src="funcion.imagen" :alt="funcion.titulo" class="card-img-top"
                   @click="showFunctionDetails(funcion)" />
-                <button @click="agregarAlCarrito(funcion)"
-                  class="btn btn-outline-warning btn-comprar">COMPRAR</button>
-                <div class="intro">
+
+                  <button @click="() => agregarAlCarrito(funcion)" class="btn btn-outline-warning btn-comprar">COMPRAR</button>
+                  
+                  <div class="intro">
                   <h1 class="card-title">{{ funcion.titulo }}</h1>
                   <p>{{ funcion.fecha }} - {{ funcion.hora }}</p>
                   <p>Grupo: {{ funcion.grupo.nombre }}</p>
