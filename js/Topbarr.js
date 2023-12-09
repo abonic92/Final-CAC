@@ -38,13 +38,16 @@ export default {
                 <li class="nav-item nav-links">
                     <a class="nav-link active" aria-current="page" href="funciones.html">Funciones</a>
                 </li>
-                <li class="nav-item nav-links">
-                    <a class="nav-link active" aria-current="page" href="carrito.html">Carrito</a>
-                </li>
+
                 <li class="nav-item nav-links">
                     <a class="nav-link active" aria-current="page" href="contacto.html">Contacto</a>
                 </li>
-
+                <li class="nav-item nav-links">
+                <a class="nav-link active" aria-current="page" href="carrito.html">
+                    <!-- Reemplaza '/img/camion.png' con la ruta correcta de tu imagen -->
+                    <img src="/img/camion.png" alt="Carrito de Compras" style="width: 50px; height: 50px;">
+                </a>
+            </li>
                 <li class="nav-item dropdown" @mouseleave="toggleDropdown">
                     <a class="nav-link dropdown-toggle text-light nav-links border border-danger rounded-2"
                         href="#" data-bs-toggle="dropdown" aria-expanded="false"

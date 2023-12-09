@@ -298,7 +298,7 @@ img {
   position: absolute;
   top: 300px; /* Ajusta según tu preferencia de distancia desde la parte superior */
   right: 10px; /* Ajusta según tu preferencia de distancia desde la parte derecha */
-  z-index: ; /* Asegura que el botón esté sobre la imagen */
+  z-index: 1; /* Asegura que el botón esté sobre la imagen */
 }
 
 h1 {
@@ -323,11 +323,11 @@ span {
 
 .intro {
     height: auto;
-    max-width: 350px; /* Set maximum width to 100% */
+    max-width: 340px; /* Set maximum width to 100% */
     box-sizing: border-box;
     padding: 6px;
     position: relative;
-    background: rgba(27, 27, 27, 0.5);
+    background: rgba(27, 27, 27, 0.384);
     color: white;
     transition: 0.5s;
     bottom: 240px; /* Use percentage for bottom */
@@ -395,7 +395,7 @@ span {
 }
 
 .carda:hover .intro {
-    height: 220px;
+    height: 280px;
     bottom: 240px;
     background: rgba(100, 0, 0, 0.705);
 }
@@ -478,3 +478,19 @@ span {
   margin-right: 2.3cm;
 }
 
+.ventana-flotante {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.ventana-imagen {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
