@@ -1,8 +1,21 @@
 export default {
   data() {
     return {
-      // agregar acá nombre de usuario o email para que se muestre dinámicanete..
+      isDropdownOpen: false,
     };
+  },
+  methods: {
+    toggleDropdown() {
+      this.isDropdownOpen = !this.isDropdownOpen;
+      if (this.isDropdownOpen) {
+        setTimeout(() => {
+          this.closeDropdown();
+        }, 3000); // Retraso de 3 segundos
+      }
+    },
+    closeDropdown() {
+      this.isDropdownOpen = false;
+    },
   },
   template: `
     <nav class="navbar navbar-expand-sm navbar-dark bg-black " aria-label="Third navbar example">
@@ -17,10 +30,7 @@ export default {
           </button>
 
           <div class="collapse navbar-collapse" id="navbarsExample03">
-            <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-
-
-            </ul>
+            <ul class="navbar-nav me-auto mb-2 mb-sm-0"></ul>
             <ul class="nav ">
                 <li class="nav-item nav-links">
                     <a class="nav-link active" aria-current="page" href="index.html">Inicio</a>
@@ -35,18 +45,17 @@ export default {
                     <a class="nav-link active" aria-current="page" href="contacto.html">Contacto</a>
                 </li>
 
-
-                <li class="nav-item dropdown ">
-                    <a class="nav-link dropdown-toggle text-light nav-links border border-danger rounded-2" href="#" data-bs-toggle="dropdown"
-                        aria-expanded="false"><i class="fas fa-fw fa-user-alt"></i></a>
-                    <ul class="dropdown-menu">
+                <li class="nav-item dropdown" @mouseleave="toggleDropdown">
+                    <a class="nav-link dropdown-toggle text-light nav-links border border-danger rounded-2"
+                        href="#" data-bs-toggle="dropdown" aria-expanded="false"
+                        :class="{ 'show': isDropdownOpen }"><i class="fas fa-fw fa-user-alt"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-custom" :class="{ 'show': isDropdownOpen }">
                         <li id="loginLink"><a class="dropdown-item" href="/dash/login.html">Login</a></li>
                     </ul>
                 </li>
             </ul>
-
           </div>
       </div>
     </nav>
-    `,
+  `,
 };

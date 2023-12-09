@@ -570,3 +570,33 @@ body {
 .navbar-dark .navbar-nav .nav-link:hover {
   color: gold; /* Color dorado al pasar el ratón por encima */
 }
+
+/* Estilo para el contenedor del desplegable */
+.dropdown-menu {
+  background-color: #000; /* Fondo negro */
+  border: 1px solid #fff; /* Borde blanco */
+}
+
+/* Estilo para los elementos del desplegable */
+.dropdown-item {
+  color: #fff; /* Texto blanco */
+  padding: 10px; /* Añade relleno alrededor del texto */
+}
+
+/* Estilo para el enlace dentro de los elementos del desplegable */
+.dropdown-item a {
+  text-decoration: none; /* Quita la subrayado del enlace */
+  color: inherit; /* Hereda el color del texto de su contenedor */
+}
+
+/* Estilo para el enlace activo del desplegable */
+.dropdown-item.active,
+.dropdown-item:hover {
+  background-color: #800000; /* Cambia el color de fondo al pasar el mouse o cuando está activo */
+  color: #fff; /* Cambia el color del texto al pasar el mouse o cuando está activo */
+}
+
+
+.nav {
+  margin-right: 2.3cm;
+}
