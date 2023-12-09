@@ -100,3 +100,19 @@ if (logoutButton) {
         window.location.href = "/index.html"; // Redirige a la página de cierre de sesión
     });
 }
+
+// Evento a botones de toogle sidebar
+  
+$(document).ready(function () {
+  $("#sidebarToggle").click(function () {
+      $("body").toggleClass("sidebar-toggled");
+      $(".sidebar").toggleClass("toggled");
+  });
+});
+
+$(document).ready(function () {
+  $("#sidebarToggleTop").click(function () {
+      $("body").toggleClass("sidebar-toggled");
+      $(".sidebar").toggleClass("toggled");
+  });
+});
