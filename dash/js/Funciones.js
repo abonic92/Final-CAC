@@ -3,9 +3,8 @@ export default {
     data() {
         return {
             funciones: [],
-            funcionAEditar: { titulo: '', fecha: '', hora: '', imagen: '', grupo_id: 0, productor_id: 0, grupo_nombre: '', productor_nombre: '', },
-            nuevaFuncion: { titulo: '', fecha: '', hora: '', imagen: '', grupo_id: 0, productor_id: 0 },
-
+            funcionAEditar: { titulo: '', fecha: '', hora: '', imagen: '', grupo_id: 0, productor_id: 0, grupo_nombre: '', productor_nombre: '', precio: 0, activa: true},
+            nuevaFuncion: { titulo: '', fecha: '', hora: '', imagen: '', grupo_id: 0, productor_id: 0, precio: 0, activa: true },
         };
     },
     mounted() {
@@ -21,7 +20,7 @@ export default {
             window.location.href = "/index.html"; 
           },
         abrirModalAgregar() {
-            this.nuevaFuncion = { titulo: '', fecha: '', hora: '', imagen: '', grupo_id: 0, productor_id: 0 };
+            this.nuevaFuncion = { titulo: '', fecha: '', hora: '', imagen: '', grupo_id: 0, productor_id: 0, precio: 0, activa: false };
             $('#agregarFuncionModal').modal('show');
         },
         async cargarProductores() {
@@ -88,7 +87,9 @@ export default {
                 $('#agregarFuncionModal').modal('hide');
             } catch (error) {
                 console.error('Error al agregar la función:', error);
-                this.logout();
+                console.log(token)
+                console.log(this.nuevaFuncion)
+//                this.logout();
             }
         },
         async cargarFunciones() {
@@ -126,6 +127,8 @@ export default {
                     imagen: funcion.imagen,
                     grupo_id: funcion.grupo.id, 
                     productor_id: funcion.productor.id,
+                    activa: funcion.activa,
+                    precio: funcion.precio
                 };
                 const headers = new Headers({
                     'Authorization': `Bearer ${token}`,
@@ -207,9 +210,11 @@ export default {
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Activa</th>
                                     <th>Título</th>
                                     <th>Fecha</th>
                                     <th>Hora</th>
+                                    <th>Precio</th>
                                     <th>Grupo</th>
                                     <th>Productor</th>
                                     <th>Editar</th>
@@ -220,11 +225,13 @@ export default {
                             <tbody>
                                 <tr v-for="funcion in funciones" :key="funcion.id">
                                     <td>{{ funcion.id }}</td>
+                                    <td>{{ funcion.activa }}</td>
                                     <td>{{ funcion.titulo }}</td>
                                     <td>{{ funcion.fecha }}</td>
                                     <td>{{ funcion.hora }}</td>
-                                    <td>{{ funcion.grupo.nombre }}</td> <!-- Nueva columna para el nombre del grupo -->
-                                    <td>{{ funcion.productor.nombre }}</td> <!-- Nueva columna para el nombre del productor -->
+                                    <td>{{ funcion.precio }}</td>
+                                    <td>{{ funcion.grupo.nombre }}</td> 
+                                    <td>{{ funcion.productor.nombre }}</td> 
                                     <td>
                                         <a @click="editarFuncionAbrirModal(funcion)" class="btn-sm btn-primary" href="#" role="button">
                                             <i class="fas fa-fw fa-edit"></i>
@@ -269,6 +276,10 @@ export default {
                             <input v-model="funcionAEditar.hora" type="time" class="form-control" required />
                         </div>
                         <div class="form-group">
+                            <label for="precio">Precio:</label>
+                            <input v-model="funcionAEditar.precio" type="number" class="form-control" required />
+                        </div>
+                        <div class="form-group">
                             <label for="imagen">Imagen URL:</label>
                             <input v-model="funcionAEditar.imagen" type="text" class="form-control" />
                         </div>
@@ -279,6 +290,10 @@ export default {
                         <div class="form-group">
                             <label for="productor_id">Productor:</label>
                             <input v-model="funcionAEditar.productor_nombre" type="text" class="form-control" disabled />
+                        </div>
+                        <div class="form-group">
+                        <label for="activa">¿Función Activa?:</label>
+                        <input v-model="funcionAEditar.activa" type="checkbox" class="form-control"/>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -320,6 +335,10 @@ export default {
                                 <input v-model="nuevaFuncion.imagen" type="text" class="form-control" />
                             </div>
                             <div class="form-group">
+                                <label for="precio">Precio:</label>
+                                <input v-model="nuevaFuncion.precio" type="number" class="form-control" required />
+                            </div>
+                            <div class="form-group">
                                 <label for="grupo_id">Grupo:</label>
                                 <select v-model="nuevaFuncion.grupo_id" class="form-control">
                                     <option v-for="grupo in grupos" :key="grupo.id" :value="grupo.id">{{ grupo.nombre }}</option>
@@ -330,6 +349,10 @@ export default {
                                 <select v-model="nuevaFuncion.productor_id" class="form-control">
                                     <option v-for="productor in productores" :key="productor.id" :value="productor.id">{{ productor.nombre }}</option>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                            <label for="activa">¿Función Activa?:</label>
+                            <input v-model="nuevaFuncion.activa" type="checkbox" class="form-control"/>
                             </div>
                         </form>
                     </div>
