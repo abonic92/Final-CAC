@@ -67,6 +67,14 @@ export default {
             </a>
             </li>
 
+            <!-- USUARIOS -->
+            <li class="nav-item">
+            <a class="nav-link" href="./funciones.html">
+                <i class="fas fa-fw fa-user-alt"></i>
+                <span>Funciones</span>
+            </a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider" />
 
