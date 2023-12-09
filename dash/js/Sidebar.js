@@ -69,9 +69,9 @@ export default {
 
             <!-- USUARIOS -->
             <li class="nav-item">
-            <a class="nav-link" href="./funciones.html">
+            <a class="nav-link" href="./usuarios.html">
                 <i class="fas fa-fw fa-user-alt"></i>
-                <span>Funciones</span>
+                <span>Usuarios</span>
             </a>
             </li>
 
