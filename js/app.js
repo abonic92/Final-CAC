@@ -7,8 +7,8 @@ import Footbar from './Footbar.js';
 // -----------  Definición Detalle Carrito
 import Carrito from './Carrito.js';
 
-// -----------  Definición grupos
-//import Contacto from './Contacto.js';
+// -----------  Definición contenido principal del index
+import Index from './index.js';
 
 // -----------  Definición funciones
 import Funciones from './Funciones.js';
@@ -45,6 +45,8 @@ const app = Vue.createApp({
       },
     },
   });
+// Registro del Index
+app.component("index", Index);
 
 // Registra el Topbar
 app.component('topbar', Topbar);

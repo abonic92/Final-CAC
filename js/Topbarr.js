@@ -38,10 +38,9 @@ export default {
 
                 <li class="nav-item dropdown ">
                     <a class="nav-link dropdown-toggle text-light nav-links border border-danger rounded-2" href="#" data-bs-toggle="dropdown"
-                        aria-expanded="false"><strong>Sesion</strong></a>
+                        aria-expanded="false"><i class="fas fa-fw fa-user-alt"></i></a>
                     <ul class="dropdown-menu">
                         <li id="loginLink"><a class="dropdown-item" href="/dash/login.html">Login</a></li>
-
                     </ul>
                 </li>
             </ul>
