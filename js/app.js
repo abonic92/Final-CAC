@@ -13,6 +13,9 @@ import Index from './index.js';
 // -----------  Definición funciones
 import Funciones from './Funciones.js';
 
+// -----------  Definición funciones
+import Contacto from './Contacto.js';
+
 // -----------  Definición carousel
 import Carousel from './Carousel.js';
 
@@ -55,6 +58,7 @@ app.component('topbar', Topbar);
 app.component('footbar', Footbar);
 
 // Registra Carrito
+
 app.component('carrito', Carrito);
 
 // Registra Carousel
@@ -62,6 +66,9 @@ app.component('carousel', Carousel);
 
 // Registra listado Funciones
 app.component('funciones', Funciones);
+
+// Registra listado Contacto
+app.component('contacto', Contacto);
 
 // Montar la aplicación Vue
 app.mount('#app');
@@ -81,4 +88,4 @@ if (logoutButton) {
         localStorage.removeItem("access_token"); // Elimina el token de acceso
         window.location.href = "/index.html"; // Redirige a la página de cierre de sesión
     });
-}
+};
