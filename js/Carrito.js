@@ -121,23 +121,27 @@ export default {
           </section>
       </div>
 
-      <div class="modal fade" id="confirmarCompraModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
-    aria-labelledby="modalTitleId" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTitleId">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">Body</div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                    Close
-                </button>
-                <button type="button" class="btn btn-primary">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
+      <!-- Confirmar Compra Modal -->
+      <div class="modal fade" id="confirmarCompraModal" tabindex="-1" aria-labelledby="confirmarCompraModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h3 class="modal-title" id="confirmarCompraModalLabel">Confirmar Compra</h3>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                      <img src="https://img.freepik.com/vector-premium/icono-marca-verificacion-carrito-compras-estilo-comico-ilustracion-vector-dibujos-animados-aprobacion-compra-sobre-fondo-blanco-aislado-confirmar-concepto-negocio-efecto-salpicadura_157943-20863.jpg?w=740"
+                                    class="img-fluid rounded-top"
+                                    alt=""/>
+                    <p>¿Desea confimar su compra?</p>           
+                      <h4><strong>Monto Total:</strong> {{ totalGeneral }}</h4>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Seguir comprando</button>
+                      <button type="button" class="btn btn-primary" @click="finalizarCompra">Confirmar Compra</button>
+                  </div>
+              </div>
+          </div>
+      </div>
   `,
 };
