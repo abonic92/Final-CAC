@@ -8,26 +8,23 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Usuarios</title>
+    <title>Dashboard</title>
 
-    <!-- Custom fonts for this template -->
-    <link href="./vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- Custom fonts for this template-->
+    <link href="./vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+        rel="stylesheet" />
 
-    <!-- Custom styles for this template -->
-    <link href="./css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="./vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link href="./css/sb-admin-2.min.css" rel="stylesheet" />
 </head>
 
 <body id="page-top">
 
     <!---------------------------------------------------------- COMIENZA LA APP  ---------------------------------------------------------->
     <div id="dashboard">
-        
+
         <!-- Page Wrapper -->
         <div id="wrapper">
 
@@ -41,12 +38,31 @@
                 <div id="content">
 
                     <!-- Topbar -->
-                    <topbar></topbar>
+                    <topbar :rolUsuario="rolUsuario"></topbar>
 
-                    <!-- Content -->
-                    <usuarios></usuarios>
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
 
+                         <!-- Illustrations -->
+                         <div class="card shadow mb-4">
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Información del backend</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                                        src="img/undraw_posting_photo.svg" alt="...">
+                                </div>
+                                <p>API elaborada para ejecutar el servidor backend del trabajo final integrador del Curso Desarrollo Full Stack Python Codo a Codo 4.0 eventos.</p>
+                                <p>Realizada por los estudiantes Adrian Nicolas Bonfanti; D.N.I. N° 36.017.999 y Gonzalo Ismael Candia Gonzalez; D.N.I. N° 36.017.999.</p>
+                                <p>Esta API proporciona servicios para administrar funciones, grupos, productores y usuarios, ofreciendo una solución integral para la planificación y organización de eventos artísticos.</p>
+                                   
+                                <p>Enlace al  <a target="_blank" rel="nofollow" href="https://github.com/gonzalocandia92/backend-teatro">repositorio backend</a></p>
+                                <p>Enlace a la api  <a target="_blank" rel="nofollow" href="https://http://gcandia1992.pythonanywhere.com/">http://gcandia1992.pythonanywhere.com/</a></p>
+                            </div>
+                        </div>
 
+                    </div>
                     <!-- /.container-fluid -->
                 </div>
                 <!-- End of Main Content -->
@@ -92,8 +108,6 @@
         </div>
     </div>
 
-
-
     <!-- Bootstrap core JavaScript-->
     <script src="./vendor/jquery/jquery.min.js"></script>
     <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -101,23 +115,19 @@
     <!-- Core plugin JavaScript-->
     <script src="./vendor/jquery-easing/jquery.easing.min.js"></script>
 
+    <!-- PAGINADOR: Page level plugins -->
+    <!-- <script src="./vendor/chart.js/Chart.min.js"></script> -->
+    <!-- <script src="./js/demo/chart-area-demo.js"></script> -->
+    <!-- <script src="./js/demo/chart-pie-demo.js"></script> -->
+
     <!-- Custom scripts for all pages-->
     <script src="./js/sb-admin-2.min.js"></script>
-    <script src="./js/sb-admin-2.js"></script>
 
-
-    <!-- Page level plugins -->
-    <script src="./vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="./vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="./js/demo/datatables-demo.js"></script>
-
-
-    <!-- vue producción-->
     <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
+
     <!-- ... Dashboard Vue ... -->
     <script type="module" src="./js/dashboard.js"></script>
+
 
 
 </body>

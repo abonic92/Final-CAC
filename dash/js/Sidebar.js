@@ -85,6 +85,17 @@ export default {
             <!-- Divider -->
             <hr class="sidebar-divider" />
 
+            <!-- Información -->
+            <li class="nav-item">
+            <a class="nav-link" href="./info.html">
+                <i class="fas fa-fw fa-info"></i>
+                <span>Nosotros</span>
+            </a>
+            </li>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider" />
+
             <!-- Divider -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>

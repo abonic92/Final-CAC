@@ -22,6 +22,9 @@ import Usuarios from './Usuarios.js';
 // -----------  Definición ventas
 import Ventas from './Venta.js';
 
+// ----------- Definición tablero
+import Tablero from './Tableros.js';
+
 // Crear instancia Vue
 const app = Vue.createApp({
     data() {
@@ -92,6 +95,9 @@ app.component('usuarios', Usuarios);
 
 // Registra venta
 app.component('ventas', Ventas);
+
+// Registra tablero
+app.component('tablero', Tablero);
 
 // Montar la aplicación Vue
 app.mount('#dashboard');
