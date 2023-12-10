@@ -140,9 +140,6 @@ export default {
       <!-- Page Heading -->
       <h1 class="h3 mb-4 text-gray-800">Administración de ventas</h1>
   
-      <!-- Botón para abrir el modal de agregar -->
-      <button type="button" class="btn btn-success" @click="abrirModalAgregar">Agregar Venta</button><br><br>
-  
       <div class="card shadow mb-4">
         <div class="card-header py-3">
           <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
