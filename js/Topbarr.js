@@ -42,12 +42,7 @@ export default {
                 <li class="nav-item nav-links">
                     <a class="nav-link active" aria-current="page" href="contacto.html">Contacto</a>
                 </li>
-                <li class="nav-item nav-links">
-                <a class="nav-link active" aria-current="page" href="carrito.html">
-                    <!-- Reemplaza '/img/camion.png' con la ruta correcta de tu imagen -->
-                    <img src="/img/camion.png" alt="Carrito de Compras" style="width: 50px; height: 50px;">
-                </a>
-            </li>
+
                 <li class="nav-item dropdown" @mouseleave="toggleDropdown">
                     <a class="nav-link dropdown-toggle text-light nav-links border border-danger rounded-2"
                         href="#" data-bs-toggle="dropdown" aria-expanded="false"
@@ -55,6 +50,12 @@ export default {
                     <ul class="dropdown-menu dropdown-menu-custom" :class="{ 'show': isDropdownOpen }">
                         <li id="loginLink"><a class="dropdown-item" href="/dash/login.html">Login</a></li>
                     </ul>
+                </li>
+                <li class="nav-item nav-links">
+                <a class="nav-link active" aria-current="page" href="carrito.html">
+                  <img src="/img/camion.png" alt="Carrito de Compras" style="width: 50px; height: 50px;">
+                  <span class="contador-carrito">3</span> <!-- Aquí puedes cambiar el número según la cantidad de elementos en el carrito -->
+                </a>
                 </li>
             </ul>
           </div>

@@ -494,3 +494,14 @@ span {
   height: auto;
   margin-bottom: 10px;
 }
+
+
+.contador-carrito {
+  background-color: #ff0000; /* Color de fondo */
+  color: #ffffff; /* Color del texto */
+  border-radius: 100%; /* Forma circular */
+  padding: 2px 5px; /* Espaciado interno */
+  position: absolute; /* Posicionamiento absoluto con respecto al contenedor padre */
+  top: 0; /* Ajuste la posición superior según sea necesario */
+  right: 0; /* Ajuste la posición derecha según sea necesario */
+}
