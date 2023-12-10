@@ -81,31 +81,38 @@ export default {
                 }
     
                 const data = await response.json();
-                
-                console.log('data.message: '+ data.message);
-                
-        
-                // Cierra el modal de confirmación
                 this.carrito = []; 
-                localStorage.removeItem('carrito');
-                $('#confirmarCompraModal').modal('hide');
-    
+                localStorage.removeItem('carrito');                
+                window.location.href = '/gracias.html';
+
             } catch (error) {
                 console.error(error);
-                // Puedes manejar el error de la llamada a la API aquí
             }
         }
 
     },
   },
   template: `
+  
   <div class="cuerpo">
         <h2 class="container23">Carrito de Compras</h2>
           <section class="carrito">
-              <div class="table-container">
-                  <!-- Agrega una condición para mostrar el botón correcto -->
-                  <button v-if="carritoVacio" class="btn btn-outline-success" onclick="comenzarComprando()">Comenzar a comprar</button>
-                  <button v-else class="btn btn-outline-primary" onclick="continuarComprando()">Continuar comprando</button>
+
+            <div v-if="carritoVacio" class="boda">
+                <div class="row justify-content-center">
+                    <div class="card text-center bg-black text-white">
+                    <img class="card-img-top"  src="https://assets.materialup.com/uploads/16e7d0ed-140b-4f86-9b7e-d9d1c04edb2b/preview.png" alt="Title" />
+                    <div class="card-body">
+                        <h4 class="card-title">Lo sentimos</h4>
+                        <p class="card-text">Parece que aún no has agregado ninguna función al carrito</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+              <div v-else class="table-container">
+              
+                    
 
                   <table class="table table-dark table-hover">
                       <thead>
@@ -135,7 +142,7 @@ export default {
                         autocomplete="off"
                         @click="restarCantidad(index)"
                         >-</button>
-
+                        &nbsp;
                         <button
                         type="button"
                         class="btn btn-outline-primary"
@@ -144,9 +151,9 @@ export default {
                         autocomplete="off"
                         @click="sumarCantidad(index)"
                         >+</button>
-
+                        &nbsp;
                         <button
-                            type="button"
+                            type="submit"
                             class="btn btn-outline-danger"
                             data-bs-toggle="button"
                             aria-pressed="false"
@@ -175,8 +182,8 @@ export default {
       </div>
 
       <!-- Confirmar Compra Modal -->
-      <div class="modal fade" id="confirmarCompraModal" tabindex="-1" aria-labelledby="confirmarCompraModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
+      <div class="modal fade" id="confirmarCompraModal" ref="confirmarCompraModal" tabindex="-1" aria-labelledby="confirmarCompraModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
               <div class="modal-content">
                   <div class="modal-header">
                       <h3 class="modal-title" id="confirmarCompraModalLabel">Confirmar Compra</h3>

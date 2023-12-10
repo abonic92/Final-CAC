@@ -23,6 +23,19 @@
             Launch
         </button>
 
+
+		<div v-if="carritoVacio" class="container">
+			<div class="row justify-content-center">
+				<div class="card text-center col-8 mb-auto bg-black text-white">
+				<img class="card-img-top"  src="https://assets.materialup.com/uploads/16e7d0ed-140b-4f86-9b7e-d9d1c04edb2b/preview.png" alt="Title" />
+				<div class="card-body">
+					<h4 class="card-title">Lo sentimos</h4>
+					<p class="card-text">Parece que aún no has agregado ninguna función al carrito</p>
+				</div>
+				</div>
+			</div>
+		</div>
+		  
         <!-- Modal Body -->
         <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
         <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"

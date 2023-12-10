@@ -68,7 +68,7 @@ export default {
 
             <!-- VENTAS -->
             <li class="nav-item">
-            <a class="nav-link" href="./usuarios.html">
+            <a class="nav-link" href="./ventas.html">
                 <i class="fas fa-fw fa-dollar-sign"></i>
                 <span>Ventas</span>
             </a>

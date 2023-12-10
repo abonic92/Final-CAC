@@ -160,8 +160,7 @@ export default {
                   <th>Fecha Venta</th>
                   <th>Hora Venta</th>
                   <th>Monto</th>
-                  <th>Editar</th>
-                  <th>Eliminar</th>
+
                 </tr>
               </thead>
             
@@ -175,16 +174,7 @@ export default {
                   <td>{{ venta.fecha_venta }}</td>
                   <td>{{ venta.hora_venta }}</td>
                   <td>{{ venta.monto }}</td>
-                  <td>
-                    <a @click="editarVentaAbrirModal(venta)" class="btn-sm btn-primary" href="#" role="button">
-                      <i class="fas fa-fw fa-edit"></i>
-                    </a>
-                  </td>
-                  <td>
-                    <a @click="eliminarVentaAbrirModal(venta)" class="btn-sm btn-danger" href="#" role="button">
-                      <i class="fas fa-fw fa-trash-alt"></i>
-                    </a>
-                  </td>
+                  
                 </tr>
               </tbody>
             </table>
