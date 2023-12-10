@@ -44,6 +44,59 @@ export default {
         // Actualizar el carrito localmente
         localStorage.setItem('carrito', JSON.stringify(this.carrito));
     },
+    async finalizarCompra() {
+        // Obtén la fecha y hora actuales
+        const fechaActual = new Date().toISOString().split('T')[0];
+        const horaActual = new Date().toLocaleTimeString();
+    
+        // Recorre el carrito y realiza una llamada a la API por cada función
+        for (const item of this.carrito) {
+  
+            const venta = {
+                funcion_id: item.id, // Reemplaza con la propiedad correcta de tu objeto de función
+                productor_id: item.productor.id, // Reemplaza con la propiedad correcta de tu objeto de función
+                grupo_id: item.grupo.id, // Reemplaza con la propiedad correcta de tu objeto de función
+                fecha_venta: fechaActual,
+                hora_venta: horaActual,
+                monto: item.precio * item.cantidad, // Monto total para esta función en el carrito
+            };
+    
+            try {
+                const token = localStorage.getItem('access_token');
+                const headers = new Headers({
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
+                });
+                const requestOptions = {
+                    method: 'POST',
+                    headers: headers,
+                    body: JSON.stringify(venta),
+                    redirect: 'follow',
+                };
+    
+                const response = await fetch('https://gcandia1992.pythonanywhere.com/ventas', requestOptions);
+
+                if (!response.ok) {
+                    throw new Error(`Error al registrar la venta. Código: ${response.status}`);
+                }
+    
+                const data = await response.json();
+                
+                console.log('data.message: '+ data.message);
+                
+        
+                // Cierra el modal de confirmación
+                this.carrito = []; 
+                localStorage.removeItem('carrito');
+                $('#confirmarCompraModal').modal('hide');
+    
+            } catch (error) {
+                console.error(error);
+                // Puedes manejar el error de la llamada a la API aquí
+            }
+        }
+
+    },
   },
   template: `
   <div class="cuerpo">

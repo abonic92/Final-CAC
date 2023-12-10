@@ -33,7 +33,6 @@ export default {
             </li>
 
             
-            </li>
 
 
             <!-- Divider -->
@@ -64,6 +63,14 @@ export default {
             <a class="nav-link" href="./funciones.html">
                 <i class="fas fa-fw fa-palette"></i>
                 <span>Funciones</span>
+            </a>
+            </li>
+
+            <!-- VENTAS -->
+            <li class="nav-item">
+            <a class="nav-link" href="./usuarios.html">
+                <i class="fas fa-fw fa-dollar-sign"></i>
+                <span>Ventas</span>
             </a>
             </li>
 
