@@ -6,6 +6,25 @@ export default {
     };
   },
   mounted() {
+    // Verificar si hay un token de acceso almacenado
+    const token = localStorage.getItem("access_token");
+    const rolUsuario = localStorage.getItem("user_roles");
+    if (!token) {
+      localStorage.removeItem("access_token"); 
+      localStorage.removeItem("user_roles"); 
+      window.location.href = "/sesion.html"; 
+
+    } else {
+      // Obtener la fecha de expiración del token del almacenamiento local
+      this.tokenExpiration = new Date(localStorage.getItem('tokenExpiration'));
+
+      // Configurar un temporizador para verificar la expiración del token cada 5 minutos
+      this.tokenCheckInterval = setInterval(() => {
+        this.checkTokenExpiration();
+      }, 300000);
+
+    }
+
     // Recuperar el carrito almacenado localmente
     const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
@@ -34,6 +53,12 @@ export default {
             localStorage.setItem('carrito', JSON.stringify(this.carrito));
         }
     },
+    logout() {
+        alert("Sesión expirada")
+        clearInterval(this.tokenCheckInterval); 
+        localStorage.removeItem("access_token"); 
+        window.location.href = "/index.html"; 
+      },
     sumarCantidad(index) {
         this.carrito[index].cantidad++;
         // Actualizar el carrito localmente
@@ -78,6 +103,7 @@ export default {
 
                 if (!response.ok) {
                     throw new Error(`Error al registrar la venta. Código: ${response.status}`);
+                    this.logout();
                 }
     
                 const data = await response.json();
@@ -87,6 +113,7 @@ export default {
 
             } catch (error) {
                 console.error(error);
+                this.logout();
             }
         }
 
