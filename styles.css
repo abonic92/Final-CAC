@@ -34,6 +34,17 @@ body {
     100%{background-position:0% 51%}
   }
   
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Asegura que el cuerpo ocupe al menos el 100% del alto de la ventana */
+    margin: 0; /* Elimina el margen predeterminado del cuerpo */
+  }
+  
+  main {
+    flex: 1; /* Hace que el contenido principal tome el espacio restante */
+  }
+  
   .header {
     position: sticky;
     top: 0;
@@ -261,12 +272,15 @@ body {
   }
   
   footer {
+    position: relative;
+    bottom: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 10px 30px;
     background: linear-gradient(#666 25%, #444 50%, #222 100%);
+    width: 100%; /* Asegura que el ancho del pie de página sea del 100% */
   }
   
   footer p {
@@ -279,6 +293,13 @@ body {
   footer i {
     font-size: 2rem;
   }
+  
+  footer a {
+    color: #f0f0f0;
+    text-decoration: none;
+    padding: 0 20px;
+  }
+
   
   #exposiciones {
     background-color: #353535;
@@ -346,11 +367,7 @@ body {
     color: #dfc162;
   }
   
-  footer a {
-    color: #f0f0f0;
-    text-decoration: none;
-    padding: 0 20px;
-  }
+
   
   /* Añade una media query para pantallas más pequeñas, como móviles */
   @media (max-width: 600px) {
