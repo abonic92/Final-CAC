@@ -74,8 +74,6 @@ export default {
         this.carrito.splice(index, 1);
         // Actualizar el carrito localmente
         localStorage.setItem('carrito', JSON.stringify(this.carrito));
-        EventBus.$emit('carritoActualizado');
-
     },
     async finalizarCompra() {
         // Obtén la fecha y hora actuales
