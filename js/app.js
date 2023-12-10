@@ -25,10 +25,15 @@ const app = Vue.createApp({
       return {
         tokenExpiration: null,
         tokenCheckInterval: null,
+        rolUsuario: localStorage.getItem("user_roles"),
+        token: localStorage.getItem("access_token"),
+
       };
     },
     mounted() {
-      
+      const loginLink = document.getElementById("loginLink");
+
+
     },
     methods: {
       checkTokenExpiration() {
@@ -45,6 +50,16 @@ const app = Vue.createApp({
         clearInterval(this.tokenCheckInterval); 
         localStorage.removeItem("access_token"); 
         window.location.href = "/index.html"; 
+      },
+      logoutModal() {
+        // Agregar lógica para mostrar modal de confirmación y realizar logout
+        const confirmLogout = confirm("¿Estás seguro de que quieres cerrar sesión?");
+        if (confirmLogout) {
+          alert("Logout exitoso"); // Puedes personalizar este mensaje o eliminarlo
+          localStorage.removeItem("access_token");
+          // Redirigir a la página de inicio de sesión u otra acción
+          // window.location.href = "/login.html";
+        }
       },
     },
   });
@@ -73,19 +88,4 @@ app.component('contacto', Contacto);
 // Montar la aplicación Vue
 app.mount('#app');
 
-document.addEventListener("DOMContentLoaded", function () {
-    const token = localStorage.getItem("access_token");
-    const loginLink = document.getElementById("loginLink");
-    if (token) { loginLink.innerHTML = '<li id="loginLink"><a class="dropdown-item" href="/dash/index.html">Dashboard</a></li>'; }
-    
-});
 
-// Evento al botón de logout
-const logoutButton = document.getElementById("logoutButton");
-if (logoutButton) {
-    logoutButton.addEventListener("click", (event) => {
-        event.preventDefault(); // Previene el comportamiento predeterminado del enlace
-        localStorage.removeItem("access_token"); // Elimina el token de acceso
-        window.location.href = "/index.html"; // Redirige a la página de cierre de sesión
-    });
-};

@@ -1,3 +1,5 @@
+import EventBus from './event-bus.js';
+
 export default {
   data() {
     return {
@@ -62,15 +64,34 @@ export default {
     agregarAlCarrito: function(funcion) {
       const token = localStorage.getItem('access_token');
       if (!token) {
+        window.location.href = "/sesion.html";
+        return;
+      }
+    
+      const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const index = carrito.findIndex((item) => item.id === funcion.id);
+      if (index !== -1) {
+        carrito[index].cantidad++;
+      } else {
+        carrito.push({ ...funcion, cantidad: 1 });
+      }
+    
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      EventBus.$emit('carritoActualizado');
+    },
+
+    agregarAlCarrito: function(funcion) {
+      const token = localStorage.getItem('access_token');
+      if (!token) {
         // Puedes redirigir al usuario a la página de inicio de sesión u otra acción
         window.location.href = "/sesion.html"; 
         return;
       }
 
       const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      console.log('El carrito tenía:'+carrito)
+      
       const index = carrito.findIndex((item) => item.id === funcion.id);
-      console.log('Función: '+funcion)
+      
       if (index !== -1) {
         // Si la función ya está en el carrito, actualizar la cantidad
         carrito[index].cantidad++;
@@ -78,11 +99,13 @@ export default {
         // Si no está en el carrito, agregarla con cantidad 1
         carrito.push({ ...funcion, cantidad: 1 });
       }
-      console.log('ahora tiene: '+carrito)
+      
       // Guardar el carrito actualizado localmente
       localStorage.setItem('carrito', JSON.stringify(carrito));
-      // Mostrar notificación si el navegador lo soporta
-      alert(funcion.titulo+' - Precio: $'+funcion.precio+', agregada al carrito');
+    
+      console.log('Evento carritoActualizado emitido');
+      EventBus.$emit('carritoActualizado');
+
     },
   },
   template: `

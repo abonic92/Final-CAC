@@ -1,3 +1,5 @@
+import EventBus from './event-bus.js';
+
 export default {
   data() {
     return {
@@ -52,6 +54,8 @@ export default {
             // Guardar el carrito actualizado localmente
             localStorage.setItem('carrito', JSON.stringify(this.carrito));
         }
+        EventBus.$emit('cantidadMenosCarrito');
+
     },
     logout() {
         alert("Sesión expirada")
@@ -63,11 +67,15 @@ export default {
         this.carrito[index].cantidad++;
         // Actualizar el carrito localmente
         localStorage.setItem('carrito', JSON.stringify(this.carrito));
+        EventBus.$emit('carritoActualizado');
+
         },
     eliminarDelCarrito(index) {
         this.carrito.splice(index, 1);
         // Actualizar el carrito localmente
         localStorage.setItem('carrito', JSON.stringify(this.carrito));
+        EventBus.$emit('carritoActualizado');
+
     },
     async finalizarCompra() {
         // Obtén la fecha y hora actuales
