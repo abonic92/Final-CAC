@@ -16,7 +16,15 @@ export default {
 
             <!-- Divider -->
             <hr class="sidebar-divider" />
-            
+
+            <!-- Toggle -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider" />
+
             <div class="sidebar-heading">Enlaces</div>
 
             <!-- INICIO -->
@@ -25,6 +33,7 @@ export default {
                 <i class="fas fa-fw fa-home"></i>
                 <span>Inicio</span>
             </a>
+            
             <!-- DASHBOARD -->
             <li class="nav-item">
                 <a class="nav-link" href="./index.html">
@@ -86,6 +95,8 @@ export default {
             <hr class="sidebar-divider" />
 
             <!-- Información -->
+            <div class="sidebar-heading">Información</div>
+
             <li class="nav-item">
             <a class="nav-link" href="./info.html">
                 <i class="fas fa-fw fa-info"></i>
@@ -95,13 +106,8 @@ export default {
 
             <!-- Divider -->
             <hr class="sidebar-divider" />
-
-            <!-- Divider -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-            
         </ul>
+        
         <!-- End of Sidebar -->
         `,
 };
