@@ -60,7 +60,13 @@ export default {
       console.log("Detalles de la función:", funcion);
     },
     agregarAlCarrito: function(funcion) {
-      
+      const token = localStorage.getItem('access_token');
+      if (!token) {
+        // Puedes redirigir al usuario a la página de inicio de sesión u otra acción
+        window.location.href = "/sesion.html"; 
+        return;
+      }
+
       const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
       console.log('El carrito tenía:'+carrito)
       const index = carrito.findIndex((item) => item.id === funcion.id);

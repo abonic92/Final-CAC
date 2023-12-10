@@ -2,7 +2,24 @@ export default {
   data() {
     return {
       isDropdownOpen: false,
+      carrito: [], // tu array de elementos en el carrito
+
     };
+  },
+  computed: {
+    cantidadEnCarrito() {
+      // Verifica si hay un token guardado en el localStorage
+      const token = localStorage.getItem('access_token');
+      
+      // Si hay token, lee la cantidad de elementos en el carrito desde el localStorage
+      if (token) {
+        const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        return carrito.reduce((total, item) => total + item.cantidad, 0);
+      } else {
+        // Si no hay token, muestra 0 en el carrito
+        return 0;
+      }
+    },
   },
   methods: {
     toggleDropdown() {
@@ -54,7 +71,7 @@ export default {
                 <li class="nav-item nav-links">
                 <a class="nav-link active" aria-current="page" href="carrito.html">
                   <img src="/img/camion.png" alt="Carrito de Compras" style="width: 50px; height: 50px;">
-                  <span class="contador-carrito">3</span> <!-- Aquí puedes cambiar el número según la cantidad de elementos en el carrito -->
+                  <span v-if="cantidadEnCarrito > 0" class="contador-carrito">{{ cantidadEnCarrito }}</span>
                 </a>
                 </li>
             </ul>
