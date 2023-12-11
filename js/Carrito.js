@@ -43,6 +43,12 @@ export default {
     },
   },
   methods:{
+
+    irAFunciones() {
+        // Redirige a funciones.html
+        window.location.href = '/funciones.html';
+    },
+
     restarCantidad(index) {
         // Restar la cantidad del ítem en el carrito
         this.carrito[index].cantidad--;
@@ -138,7 +144,11 @@ export default {
                     <div class="card-body">
                         <h4 class="card-title">Lo sentimos</h4>
                         <p class="card-text">Parece que aún no has agregado ninguna función al carrito</p>
+
+                        <button type="button" class="btn btn-outline-warning" @click="irAFunciones">Compra tus entradas</button>
+
                     </div>
+
                     </div>
                 </div>
             </div>

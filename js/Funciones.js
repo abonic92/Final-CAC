@@ -130,7 +130,7 @@ export default {
                   <p>{{ funcion.fecha }} - {{ funcion.hora }}</p>
                   <p>Grupo: {{ funcion.grupo.nombre }}</p>
                   <p>Productor: {{ funcion.productor.nombre }}</p>
-                  <p>Precio: {{ funcion.precio }}</p>
+                  <p>Precio: $ {{ funcion.precio }}</p>
                 </div>
               </div>
             </div>
