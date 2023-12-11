@@ -49,6 +49,8 @@ export default {
 
       return new Intl.DateTimeFormat("es-ES", options).format(date);
     },
+
+
   },
   template: `
     <div>

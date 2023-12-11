@@ -15,7 +15,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="./js/dashitem.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@3.0.11/dist/vue.global.min.js"></script>
-    <script src="./js/app.js"></script>
 
 
 
@@ -34,9 +33,6 @@
 
 
 
-        <!-- Footbar -->
-        <footbar></footbar>
-
     <!----------------------------------- fin app  ----------------------------------->
     </div>
     
@@ -44,16 +40,18 @@
         <h2 class="text-center">Como contactarme</h2>
     </div>
     
-    <div class="d-flex justify-content-between">
-        <div class="contacto w-50">
+    
+        <div class="text-center">
             <h5 class="container2">Ubicación de mi oficina</h5>
+            <div class="col-lg-6 mx-auto">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3540.3739991971074!2d-59.002311923748096!3d-27.45761361619285!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94450c8f71485f9d%3A0xf38402adb4cf5002!2sRold%C3%A1n%20344%2C%20H3506BAG%20Resistencia%2C%20Chaco!5e0!3m2!1ses!2sar!4v1698310651070!5m2!1ses!2sar"
                 width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
     
-        <div class="contacto w-50">
+        <div class="text-center">
             <h5 class="container23">Contacto</h5>
             <div class="col-lg-6 mx-auto">
                 <div class="py-1">
@@ -96,7 +94,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
     
     <div id="confirmation-modal" class="modal">
         <div class="modal-content">
@@ -104,10 +102,17 @@
             <p id="modal-message">Mensaje de confirmación</p>
         </div>
     </div>
-        `,
+ 
 
 
-
+        <footer class="footer">
+            <p>&copy; 2023 La Sala Teatro</p>
+            <div>
+                <a href="https://www.facebook.com/"><i class='bx bxl-facebook-circle'></i></a>
+                <a href="https://www.instagram.com/"><i class='bx bxl-instagram'></i></a>
+                <a href="https://twitter.com/?lang=es"><i class='bx bxl-twitter'></i></a>
+            </div>
+            </footer>
 </body>
 
 

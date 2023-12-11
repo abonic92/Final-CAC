@@ -13,6 +13,19 @@ body {
   animation: AnimationName 15s ease infinite;
   
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que el cuerpo ocupe al menos el 100% del alto de la ventana */
+  margin: 0; /* Elimina el margen predeterminado del cuerpo */
+}
+
+main {
+  flex: 1; /* Hace que el contenido principal tome el espacio restante */
+}
+
+
 @-webkit-keyframes AnimationName {
   0%{background-position:0% 51%}
   50%{background-position:100% 50%}
@@ -533,7 +546,7 @@ right: 0; /* Ajuste la posición derecha según sea necesario */
 }
 
 #openModal {
-    color: #0099b4;
+    color: #00d9ff;
     text-decoration: none;
     font-weight: bold;
     cursor: pointer;
@@ -596,7 +609,7 @@ right: 0; /* Ajuste la posición derecha según sea necesario */
   
   form button {
     width: 100px;
-    height: 30px;
+    height: 60px;
     background-color: #f0f0f0;
     color: #333;
     text-align: center;
